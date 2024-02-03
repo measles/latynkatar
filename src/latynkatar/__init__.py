@@ -1,1 +1,1 @@
-from latynkatar import Cyr2Lat
+from .latynkatar import Cyr2Lat
