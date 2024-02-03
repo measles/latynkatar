@@ -1,51 +1,107 @@
+convertion_rules = {
+    "а": "a",
+    "э": "e",
+    "ы": "y",
+    "у": "u",
+    "ў": "ǔ",
+    "б": "b",
+    "в": "v",
+    "г": "h",
+    "д": "d",
+    "ж": "ž",
+    "к": "k",
+    "м": "m",
+    "п": "p",
+    "р": "r",
+    "т": "t",
+    "ф": "f",
+    "ч": "č",
+    "ш": "š",
+}
+consonants = ("а", "е", "ё", "і", "у", "э", "ю", "я")
+j_based = ("е", "ё", "і", "ю", "я")
+j_based_conversion_rules = {
+    "е": "e",
+    "ё": "o",
+    "і": "",
+    "ю": "u",
+    "я": "a",
+}
+
+
 class Cyr2Lat:
     @classmethod
     def convert(cls, text: str) -> str:
         converted_text = ""
-        for index in range(len(text)):
-            if text[index].lower() == "л":
-                if text[index + 1].lower() in ["я", "е", "ь", "ё", "і", "ю"]:
-                    converted_text += "l" if text[index].islower() else "L"
+        text_length = len(text)
+        for index in range(text_length):
+            if index > 0:
+                previous_letter = text[index - 1]
+            else:
+                previous_letter = None
+
+            current_letter = text[index]
+            if index < text_length - 1:
+                next_letter = text[index + 1]
+            else:
+                next_letter = None
+
+            if current_letter.lower() in convertion_rules:
+                converted_letter = convertion_rules[current_letter.lower()]
+                if current_letter.isupper():
+                    converted_letter = converted_letter.upper()
+
+                converted_text += converted_letter
+            elif current_letter.lower() == "л":
+                if next_letter.lower() in ("ь",) + j_based:
+                    converted_text += "l" if current_letter.islower() else "L"
                 else:
-                    converted_text += "ł" if text[index].islower() else "Ł"
-            elif text[index].lower() == "ь":
-                if text[index - 1].lower() == "л":
-                    pass
-            # Галосныя: А, Е, Ё, У, О, Ю, Э, Я, І
-            elif text[index].lower() == "а":
-                converted_text += "a" if text[index].islower() else "A"
-            elif text[index].lower() == "э":
-                converted_text += "e" if text[index].islower() else "E"
-            elif text[index].lower() == "у":
-                converted_text += "u" if text[index].islower() else "U"
-            elif text[index].lower() == "о":
-                converted_text += "o" if text[index].islower() else "O"
-            elif text[index].lower() == "і":
-                # TODO: Dadać pierachod u J
-                converted_text += "i" if text[index].islower() else "I"
-            elif text[index].lower() == "е":
-                if text[index - 1].lower() == "л":
-                    converted_text += "e" if text[index].islower() else "E"
+                    converted_text += "ł" if current_letter.islower() else "Ł"
+            elif current_letter.lower() == "н":
+                if index < len(text) - 1 and next_letter.lower() == "ь":
+                    converted_text += "ń" if current_letter.islower() else "Ń"
                 else:
-                    converted_text += "ie" if text[index].islower() else "Ie"
-                    # TODO: Dadać pierachod u J
-            elif text[index].lower() == "ё":
-                if text[index - 1].lower() == "л":
-                    converted_text += "o" if text[index].islower() else "O"
+                    converted_text += "n" if current_letter.islower() else "N"
+            elif current_letter.lower() == "с":
+                if index < len(text) - 1 and next_letter.lower() == "ь":
+                    converted_text += "ś" if current_letter.islower() else "Ś"
                 else:
-                    converted_text += "io" if text[index].islower() else "Io"
-                    # TODO: Dadać pierachod u J
-            elif text[index].lower() == "ю":
-                if text[index - 1].lower() == "л":
-                    converted_text += "u" if text[index].islower() else "U"
+                    converted_text += "s" if current_letter.islower() else "S"
+            elif current_letter.lower() == "ц":
+                if index < len(text) - 1 and next_letter.lower() == "ь":
+                    converted_text += "ć" if current_letter.islower() else "Ć"
                 else:
-                    converted_text += "iu" if text[index].islower() else "Iu"
-                    # TODO: Dadać pierachod u J
-            elif text[index].lower() == "я":
-                if text[index - 1].lower() == "л":
-                    converted_text += "a" if text[index].islower() else "A"
+                    converted_text += "c" if current_letter.islower() else "C"
+            elif current_letter.lower() == "ь" or current_letter.lower() == "'":
+                pass
+            # Перадаюцца праз i/j
+            elif current_letter.lower() in j_based:
+                if (
+                    not previous_letter
+                    or previous_letter.lower() in consonants
+                    or not previous_letter.isalpha()
+                    or previous_letter == "'"
+                ) and current_letter != "і":
+                    base = "j" if current_letter.islower() else "J"
                 else:
-                    converted_text += "ia" if text[index].islower() else "Ia"
-                    # TODO: Dadać pierachod u J
+                    base = "i" if current_letter.islower() else "I"
+
+                second_letter = j_based_conversion_rules[current_letter.lower()]
+                if (
+                    current_letter.lower() != "і"
+                    and previous_letter
+                    and previous_letter.lower() == "л"
+                ):
+                    converted_letter = (
+                        second_letter
+                        if current_letter.islower()
+                        else second_letter.upper()
+                    )
+                else:
+                    converted_letter = base + second_letter
+
+                converted_text += converted_letter
+            else:
+                converted_text += current_letter
 
         return converted_text
