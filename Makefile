@@ -5,4 +5,10 @@ test:
 	python3 -m pytest tests -lv -ra
 	
 black:
-	python3 -m black --check tests/ latynkatar.py || python3 -m black --diff tests/ latynkatar.py
+	python3 -m black --check tests/ src/
+
+black_diff:
+	python3 -m black --diff tests/ src/
+
+blacked:
+	python3 -m black tests/ src/
