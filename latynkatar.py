@@ -7,10 +7,12 @@ convertion_rules = {
     "б": "b",
     "в": "v",
     "г": "h",
+    "ґ": "g",
     "д": "d",
     "ж": "ž",
     "к": "k",
     "м": "m",
+    "о": "o",
     "п": "p",
     "р": "r",
     "т": "t",
@@ -18,7 +20,7 @@ convertion_rules = {
     "ч": "č",
     "ш": "š",
 }
-consonants = ("а", "е", "ё", "і", "у", "э", "ю", "я")
+consonants = ("а", "е", "ё", "і", "у", "ы", "э", "ю", "я")
 j_based = ("е", "ё", "і", "ю", "я")
 j_based_conversion_rules = {
     "е": "e",
@@ -53,25 +55,32 @@ class Cyr2Lat:
 
                 converted_text += converted_letter
             elif current_letter.lower() == "л":
-                if next_letter.lower() in ("ь",) + j_based:
+                if next_letter and next_letter.lower() in ("ь",) + j_based:
                     converted_text += "l" if current_letter.islower() else "L"
                 else:
                     converted_text += "ł" if current_letter.islower() else "Ł"
             elif current_letter.lower() == "н":
-                if index < len(text) - 1 and next_letter.lower() == "ь":
+                if next_letter and next_letter.lower() == "ь":
                     converted_text += "ń" if current_letter.islower() else "Ń"
                 else:
                     converted_text += "n" if current_letter.islower() else "N"
             elif current_letter.lower() == "с":
-                if index < len(text) - 1 and next_letter.lower() == "ь":
+                if next_letter and next_letter.lower() == "ь":
                     converted_text += "ś" if current_letter.islower() else "Ś"
                 else:
                     converted_text += "s" if current_letter.islower() else "S"
             elif current_letter.lower() == "ц":
-                if index < len(text) - 1 and next_letter.lower() == "ь":
+                if next_letter and next_letter.lower() == "ь":
                     converted_text += "ć" if current_letter.islower() else "Ć"
                 else:
                     converted_text += "c" if current_letter.islower() else "C"
+            elif current_letter.lower() == "з":
+                if next_letter and next_letter.lower() == "ь":
+                    converted_text += "ź" if current_letter.islower() else "Ź"
+                else:
+                    converted_text += "z" if current_letter.islower() else "Z"
+            elif current_letter.lower() == "х":
+                    converted_text += "ch" if current_letter.islower() else "Ch"
             elif current_letter.lower() == "ь" or current_letter.lower() == "'":
                 pass
             # Перадаюцца праз i/j
