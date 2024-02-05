@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "latynkatar"
+version = "0.1"
+authors = [
+  { name="Andrej Zacharevicz", email="zahar.by@gmail.com" },
+]
+description = """EN: Simple and small package to convert belarussian cyrillic text to a  modern latin (the one with č, š and ǔ).
+
+BE: Просты і невялікі пакет для канвертацыі беларускай кірыліцы ў сучасную лацінку (з č, š і ǔ)."""
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/measles/latynkatar"
+Issues = "https://github.com/measles/latynkatar/issues"

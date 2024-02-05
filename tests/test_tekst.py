@@ -1,5 +1,5 @@
 import pytest
-from latynkatar import Cyr2Lat
+from src.latynkatar import Cyr2Lat
 
 # Узор узяты з часопіса PAMYŁKA: 
 # https://github.com/PAMYLKA-ZIN/pamylka-number-3/tree/main/PAMYLKA_ZIN_3_FOR_SHARING
@@ -18,9 +18,9 @@ UZOR = """Vitajem ciabie, čytaču!
 Heta treci numar PAMYŁKA ZIN!
 My vielmi ciešymsia, što da kamandy stvaralnikaǔ praciahvajuć dałučacca
 novyja navukoǔcy i mastaki! J my budziem radyja kožnamu novamu ǔdzielniku!
-Siabry, my redakcyjaй nadumali zapačatkavać premiju – «Bizon Higs». Tamu hety
+Siabry, my redakcyjaj nadumali zapačatkavać premiju – «Bizon Higs». Tamu hety
 numar my prysviačajem usim biełaruskim navukoǔcam i chočam anansavać premiju,
-jakaja budzie ǔvasablać saboй Biełaruś i navuku razam! Heta ǔznaharoda dla
+jakaja budzie ǔvasablać saboj Biełaruś i navuku razam! Heta ǔznaharoda dla
 biełaruskich navukoǔcaǔ i daslednikaǔ dakładnych i pryrodaznaǔčych navuk ad
 navukova-papularnaha časopisu Pamyłka Zin.
 Bolš detalaǔ apaviadaje pieršy artykuł numaru.
