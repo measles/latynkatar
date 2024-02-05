@@ -17,7 +17,7 @@ PRYKŁAD = """Вітаем цябе, чытачу!
 UZOR = """Vitajem ciabie, čytaču!
 Heta treci numar PAMYŁKA ZIN!
 My vielmi ciešymsia, što da kamandy stvaralnikaǔ praciahvajuć dałučacca
-novyja navukoǔcy i mastaki! J my budziem radyja kožnamu novamu ǔdzielniku!
+novyja navukoǔcy i mastaki! I my budziem radyja kožnamu novamu ǔdzielniku!
 Siabry, my redakcyjaj nadumali zapačatkavać premiju – «Bizon Higs». Tamu hety
 numar my prysviačajem usim biełaruskim navukoǔcam i chočam anansavać premiju,
 jakaja budzie ǔvasablać saboj Biełaruś i navuku razam! Heta ǔznaharoda dla
