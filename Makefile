@@ -12,3 +12,6 @@ black_diff:
 
 blacked:
 	python3 -m black tests/ src/
+
+upload:
+	python3 -m twine upload dist/*
