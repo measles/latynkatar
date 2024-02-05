@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public License v3
 :copyright: (c) 2023, 2024 by Andrej Zacharevicz.
 """
 
+
 from .variables import (
     PRAVILY_KANVERTACYJ,
     HALOSNYJA,
@@ -75,6 +76,7 @@ class Cyr2Lat:
 
             if current_letter.lower() in PRAVILY_KANVERTACYJ:
                 converted_letter = PRAVILY_KANVERTACYJ[current_letter.lower()]
+
                 converted_letter = set_correct_case(converted_letter, current_letter)
             elif current_letter.lower() == "л":
                 if next_letter and next_letter.lower() in ("ь",) + tuple(
