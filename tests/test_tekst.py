@@ -1,7 +1,7 @@
 import pytest
 from src.latynkatar import Cyr2Lat
 
-# Узор узяты з часопіса PAMYŁKA: 
+# Узор узяты з часопіса PAMYŁKA:
 # https://github.com/PAMYLKA-ZIN/pamylka-number-3/tree/main/PAMYLKA_ZIN_3_FOR_SHARING
 PRYKŁAD = """Вітаем цябе, чытачу!
 Гэта трэці нумар PAMYŁKA ZIN!
@@ -25,6 +25,7 @@ biełaruskich navukoǔcaǔ i daslednikaǔ dakładnych i pryrodaznaǔčych navuk 
 navukova-papularnaha časopisu Pamyłka Zin.
 Bolš detalaǔ apaviadaje pieršy artykuł numaru.
 """
+
 
 def test_pryład():
     assert Cyr2Lat.convert(PRYKŁAD) == UZOR
