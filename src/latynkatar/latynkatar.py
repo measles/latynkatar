@@ -1,35 +1,9 @@
-convertion_rules = {
-    "а": "a",
-    "э": "e",
-    "ы": "y",
-    "у": "u",
-    "ў": "ǔ",
-    "б": "b",
-    "в": "v",
-    "г": "h",
-    "ґ": "g",
-    "д": "d",
-    "ж": "ž",
-    "й": "j",
-    "к": "k",
-    "м": "m",
-    "о": "o",
-    "п": "p",
-    "р": "r",
-    "т": "t",
-    "ф": "f",
-    "ч": "č",
-    "ш": "š",
-}
-consonants = ("а", "е", "ё", "і", "у", "ы", "э", "ю", "я")
-j_based = ("е", "ё", "і", "ю", "я")
-j_based_conversion_rules = {
-    "е": "e",
-    "ё": "o",
-    "і": "",
-    "ю": "u",
-    "я": "a",
-}
+from .variables import (
+    PRAVILY_KANVERTACYJ,
+    HALOSNYJA,
+    PRAVILY_KANVERTACYJ_Z_J,
+    MOHUC_PAZNACZACCA_JAK_MIAKKIJA,
+)
 
 
 class Cyr2Lat:
@@ -49,46 +23,35 @@ class Cyr2Lat:
             else:
                 next_letter = None
 
-            if current_letter.lower() in convertion_rules:
-                converted_letter = convertion_rules[current_letter.lower()]
+            if current_letter.lower() in PRAVILY_KANVERTACYJ:
+                converted_letter = PRAVILY_KANVERTACYJ[current_letter.lower()]
                 if current_letter.isupper():
                     converted_letter = converted_letter.upper()
 
                 converted_text += converted_letter
             elif current_letter.lower() == "л":
-                if next_letter and next_letter.lower() in ("ь",) + j_based:
+                if next_letter and next_letter.lower() in ("ь",) + tuple(
+                    PRAVILY_KANVERTACYJ_Z_J.keys()
+                ):
                     converted_text += "l" if current_letter.islower() else "L"
                 else:
                     converted_text += "ł" if current_letter.islower() else "Ł"
-            elif current_letter.lower() == "н":
+            # могуць змякчацца асобна ад галосных літар пасля іх (мяккі знак)
+            elif current_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA:
+                hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
                 if next_letter and next_letter.lower() == "ь":
-                    converted_text += "ń" if current_letter.islower() else "Ń"
+                    converted_text += soft if current_letter.islower() else soft.upper()
                 else:
-                    converted_text += "n" if current_letter.islower() else "N"
-            elif current_letter.lower() == "с":
-                if next_letter and next_letter.lower() == "ь":
-                    converted_text += "ś" if current_letter.islower() else "Ś"
-                else:
-                    converted_text += "s" if current_letter.islower() else "S"
-            elif current_letter.lower() == "ц":
-                if next_letter and next_letter.lower() == "ь":
-                    converted_text += "ć" if current_letter.islower() else "Ć"
-                else:
-                    converted_text += "c" if current_letter.islower() else "C"
-            elif current_letter.lower() == "з":
-                if next_letter and next_letter.lower() == "ь":
-                    converted_text += "ź" if current_letter.islower() else "Ź"
-                else:
-                    converted_text += "z" if current_letter.islower() else "Z"
+                    converted_text += hard if current_letter.islower() else hard.upper()
             elif current_letter.lower() == "х":
-                    converted_text += "ch" if current_letter.islower() else "Ch"
+                converted_text += "ch" if current_letter.islower() else "Ch"
             elif current_letter.lower() == "ь" or current_letter.lower() == "'":
                 pass
             # Перадаюцца праз i/j
-            elif current_letter.lower() in j_based:
+            elif current_letter.lower() in PRAVILY_KANVERTACYJ_Z_J:
                 if (
                     not previous_letter
-                    or previous_letter.lower() in consonants
+                    or previous_letter.lower() in HALOSNYJA
                     or not previous_letter.isalpha()
                     or previous_letter == "'"
                 ) and current_letter.lower() != "і":
@@ -96,7 +59,7 @@ class Cyr2Lat:
                 else:
                     base = "i" if current_letter.islower() else "I"
 
-                second_letter = j_based_conversion_rules[current_letter.lower()]
+                second_letter = PRAVILY_KANVERTACYJ_Z_J[current_letter.lower()]
                 if (
                     current_letter.lower() != "і"
                     and previous_letter
