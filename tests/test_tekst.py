@@ -29,6 +29,51 @@ navukova-papularnaha časopisu Pamyłka Zin.
 Bolš detalaǔ apaviadaje pieršy artykuł numaru.
 """
 
+PRYKŁAD_BAHDANOVIČ = """Маладыя гады,
+Маладыя жаданні!
+Ні жуды, ні нуды,
+Толькі шчасьце каханьня!
+ 
+Помніш толькі красу,
+Мілы тварык дзявочы,
+Залатую касу,
+Сіняватыя вочы!
 
-def test_pryład():
-    assert Cyr2Lat.convert(PRYKŁAD) == UZOR
+Цёмны сад-вінаград,
+Цьвет бяленькі вішнёвы, —
+І агністы пагляд,
+І гарачыя словы!
+ 
+Будзь жа, век малады,
+Поўны сьветлымі днямі!
+Пралятайце, гады,
+Залатымі агнямі!
+"""
+UZOR_BAHDANOVIČ = """Maładyja hady,
+Maładyja žadanni!
+Ni žudy, ni nudy,
+Tolki ščaście kachańnia!
+ 
+Pomniš tolki krasu,
+Miły tvaryk dziavočy,
+Załatuju kasu,
+Siniavatyja vočy!
+
+Ciomny sad-vinahrad,
+Ćviet bialeńki višniovy, —
+I ahnisty pahlad,
+I haračyja słovy!
+ 
+Budź ža, viek małady,
+Poǔny śvietłymi dniami!
+Pralatajcie, hady,
+Załatymi ahniami!
+"""
+
+
+def test_z_pamylki():
+    assert Cyr2Lat.convert(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA
+    
+
+def test_bahdanovicz():
+    assert Cyr2Lat.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ
