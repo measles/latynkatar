@@ -1,9 +1,13 @@
-import pytest
-from src.latynkatar import Cyr2Lat
+# Try to import from module, else import from the source code
+try:
+    from latynkatar import Cyr2Lat
+except ModuleNotFoundError:
+    from src.latynkatar import Cyr2Lat
+
 
 # Узор узяты з часопіса PAMYŁKA:
 # https://github.com/PAMYLKA-ZIN/pamylka-number-3/tree/main/PAMYLKA_ZIN_3_FOR_SHARING
-PRYKŁAD = """Вітаем цябе, чытачу!
+PRYKŁAD_PAMYŁKA = """Вітаем цябе, чытачу!
 Гэта трэці нумар PAMYŁKA ZIN!
 Мы вельмі цешымся, што да каманды стваральнікаў працягваюць далучацца
 новыя навукоўцы і мастакі! І мы будзем радыя кожнаму новаму ўдзельніку!
@@ -14,7 +18,7 @@ PRYKŁAD = """Вітаем цябе, чытачу!
 навукова-папулярнага часопісу Pamyłka Zin.
 Больш дэталяў апавядае першы артыкул нумару.
 """
-UZOR = """Vitajem ciabie, čytaču!
+UZOR_PAMYŁKA = """Vitajem ciabie, čytaču!
 Heta treci numar PAMYŁKA ZIN!
 My vielmi ciešymsia, što da kamandy stvaralnikaǔ praciahvajuć dałučacca
 novyja navukoǔcy i mastaki! I my budziem radyja kožnamu novamu ǔdzielniku!
@@ -26,6 +30,51 @@ navukova-papularnaha časopisu Pamyłka Zin.
 Bolš detalaǔ apaviadaje pieršy artykuł numaru.
 """
 
+PRYKŁAD_BAHDANOVIČ = """Маладыя гады,
+Маладыя жаданні!
+Ні жуды, ні нуды,
+Толькі шчасьце каханьня!
+ 
+Помніш толькі красу,
+Мілы тварык дзявочы,
+Залатую касу,
+Сіняватыя вочы!
 
-def test_pryład():
-    assert Cyr2Lat.convert(PRYKŁAD) == UZOR
+Цёмны сад-вінаград,
+Цьвет бяленькі вішнёвы, —
+І агністы пагляд,
+І гарачыя словы!
+ 
+Будзь жа, век малады,
+Поўны сьветлымі днямі!
+Пралятайце, гады,
+Залатымі агнямі!
+"""
+UZOR_BAHDANOVIČ = """Maładyja hady,
+Maładyja žadanni!
+Ni žudy, ni nudy,
+Tolki ščaście kachańnia!
+ 
+Pomniš tolki krasu,
+Miły tvaryk dziavočy,
+Załatuju kasu,
+Siniavatyja vočy!
+
+Ciomny sad-vinahrad,
+Ćviet bialeńki višniovy, —
+I ahnisty pahlad,
+I haračyja słovy!
+ 
+Budź ža, viek małady,
+Poǔny śvietłymi dniami!
+Pralatajcie, hady,
+Załatymi ahniami!
+"""
+
+
+def test_z_pamylki():
+    assert Cyr2Lat.convert(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA
+    
+
+def test_bahdanovicz():
+    assert Cyr2Lat.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ
