@@ -73,7 +73,7 @@ Załatymi ahniami!
 
 def test_z_pamylki():
     assert Cyr2Lat.convert(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA
-    
+
 
 def test_bahdanovicz():
     assert Cyr2Lat.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ

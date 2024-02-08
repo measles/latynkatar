@@ -18,7 +18,6 @@ You should have received a copy of the GNU Lesser General Public License v3
 :copyright: (c) 2023, 2024 by Andrej Zacharevicz.
 """
 
-
 HALOSNYJA = ("а", "е", "ё", "і", "у", "ы", "э", "ю", "я")
 MOHUC_PAZNACZACCA_JAK_MIAKKIJA = {
     "н": ("n", "ń"),

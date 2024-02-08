@@ -18,7 +18,6 @@ You should have received a copy of the GNU Lesser General Public License v3
 :copyright: (c) 2023, 2024 by Andrej Zacharevicz.
 """
 
-
 from .variables import (
     PRAVILY_KANVERTACYJ,
     HALOSNYJA,
