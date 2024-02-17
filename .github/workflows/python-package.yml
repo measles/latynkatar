@@ -105,5 +105,11 @@ jobs:
       run: pip install -r build-requirements.txt
     - name: Check files
       run: ls -Ra
+    - uses: actions/download-artifact@v4
+      with:
+        name: packages
+        path: dist
+    - name: Check files
+      run: ls -Ra
     - name: Upload the package
-      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*.whl dist/*.tar.gz
+      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*
