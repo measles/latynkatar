@@ -102,4 +102,4 @@ jobs:
     - name: Install dependencies
       run: pip install -r build-requirements.txt
     - name: Upload the package
-      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*
+      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/**
