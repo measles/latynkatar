@@ -68,14 +68,38 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
     - uses: actions/download-artifact@v4
       with:
         name: packages
+        path: dist
     - name: Display structure of downloaded files
       run: ls -R
     - name: Install dependancies
       run: |
         pip install -r requirements.txt
-        pip install *.whl
+        pip install dist/*.whl
     - name: Test build package
       run: python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
+
+  upload:
+    needs: package-tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: packages
+        path: dist
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.12
+    - name: Install dependencies
+      run: pip install -r build-requirements.txt
+    - name: Upload the package
+      run: python3 -m twine --non-interactive --username __token__ --password ${{ secrets.PYPI_API_TOKEN }} dist/*
