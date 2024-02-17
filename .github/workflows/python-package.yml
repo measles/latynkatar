@@ -94,6 +94,10 @@ jobs:
       with:
         name: packages
         path: dist
+    - name: Check files
+      run: ls -Ra
+    - name: Check dist
+      run: ls -Ra dist
     - uses: actions/checkout@v4
     - name: Set up Python 3.12
       uses: actions/setup-python@v4
@@ -102,4 +106,4 @@ jobs:
     - name: Install dependencies
       run: pip install -r build-requirements.txt
     - name: Upload the package
-      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/**
+      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*
