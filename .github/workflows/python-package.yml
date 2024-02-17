@@ -10,13 +10,13 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  code-tests:
 
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
     steps:
     - uses: actions/checkout@v4
@@ -37,4 +37,27 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
+        python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
+
+  build:
+    needs: code-tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.12
+    - name: Install dependencies
+      run: pip install -r build-requirements.txt
+    - name: Build the package
+      run: python3 -m build
+    - uses: actions/upload-artifact@v4
+      with:
+        name: packages
+        path: dist/*
+    - name: Test build package
+      run: |
+        pip install dist/*.whl
         python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
