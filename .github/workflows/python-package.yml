@@ -57,8 +57,24 @@ jobs:
       with:
         name: packages
         path: dist/*
-    - name: Test build package
+
+  package-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"] 
+
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: packages
+    - name: Display structure of downloaded files
+      run: ls -R
+    - name: Install dependancies
       run: |
         pip install -r requirements.txt
         pip install dist/*.whl
-        python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
+    - name: Test build package
+      run: python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
