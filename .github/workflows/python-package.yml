@@ -96,8 +96,6 @@ jobs:
         path: dist
     - name: Check files
       run: ls -Ra
-    - name: Check dist
-      run: ls -Ra dist
     - uses: actions/checkout@v4
     - name: Set up Python 3.12
       uses: actions/setup-python@v4
@@ -105,5 +103,7 @@ jobs:
         python-version: 3.12
     - name: Install dependencies
       run: pip install -r build-requirements.txt
+    - name: Check files
+      run: ls -Ra
     - name: Upload the package
-      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} ./dist/latynkatar-*
+      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*.whl dist/*.tar.gz
