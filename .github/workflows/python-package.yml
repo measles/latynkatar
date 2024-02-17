@@ -59,5 +59,6 @@ jobs:
         path: dist/*
     - name: Test build package
       run: |
+        pip install -r requirements.txt
         pip install dist/*.whl
         python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
