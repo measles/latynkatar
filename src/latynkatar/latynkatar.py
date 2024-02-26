@@ -74,7 +74,7 @@ class Cyr2Lat:
                     or previous_letter.lower() in HALOSNYJA
                     or not previous_letter.isalpha()
                     or previous_letter == "'"
-                    or previous_letter.lower() ==  "ь"
+                    or previous_letter.lower() == "ь"
                 ) and current_letter.lower() != "і":
                     base = "j" if current_letter.islower() else "J"
                 else:
