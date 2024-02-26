@@ -78,7 +78,7 @@ class Cyr2Lat:
 
                 converted_letter = set_correct_case(converted_letter, current_letter)
             elif current_letter.lower() == "л":
-                if next_letter and next_letter.lower() in ("ь",) + tuple(
+                if next_letter and next_letter.lower() in ("ь", "л") + tuple(
                     PRAVILY_KANVERTACYJ_Z_J.keys()
                 ):
                     converted_letter = set_correct_case("l", current_letter)
