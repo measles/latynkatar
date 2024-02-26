@@ -50,7 +50,7 @@ class Cyr2Lat:
 
                 converted_text += converted_letter
             elif current_letter.lower() == "л":
-                if next_letter and next_letter.lower() in ("ь",) + tuple(
+                if next_letter and next_letter.lower() in ("ь", "л") + tuple(
                     PRAVILY_KANVERTACYJ_Z_J.keys()
                 ):
                     converted_text += "l" if current_letter.islower() else "L"
@@ -74,6 +74,7 @@ class Cyr2Lat:
                     or previous_letter.lower() in HALOSNYJA
                     or not previous_letter.isalpha()
                     or previous_letter == "'"
+                    or previous_letter.lower() == "ь"
                 ) and current_letter.lower() != "і":
                     base = "j" if current_letter.islower() else "J"
                 else:
