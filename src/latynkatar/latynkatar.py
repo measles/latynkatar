@@ -32,6 +32,7 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
         or previous_letter.lower() in HALOSNYJA
         or not previous_letter.isalpha()
         or previous_letter == "'"
+        or previous_letter.lower() == "ь"
     ) and current_letter.lower() != "і":
         base = set_correct_case("j", current_letter)
     else:
