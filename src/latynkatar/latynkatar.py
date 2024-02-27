@@ -26,18 +26,48 @@ from .variables import (
 )
 
 
+def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
+    if (
+        not previous_letter
+        or previous_letter.lower() in HALOSNYJA
+        or not previous_letter.isalpha()
+        or previous_letter == "'"
+    ) and current_letter.lower() != "і":
+        base = set_correct_case("j", current_letter)
+    else:
+        base = set_correct_case("i", current_letter)
+
+    second_letter = PRAVILY_KANVERTACYJ_Z_J[current_letter.lower()]
+    if (
+        current_letter.lower() != "і"
+        and previous_letter
+        and previous_letter.lower() == "л"
+    ):
+        converted_letter = (
+            second_letter if current_letter.islower() else second_letter.upper()
+        )
+    else:
+        converted_letter = base + second_letter
+
+    return converted_letter
+
+
+def set_correct_case(converted_letter: str, current_letter: str) -> str:
+    return converted_letter if current_letter.islower() else converted_letter.upper()
+
+
 class Cyr2Lat:
     @classmethod
     def convert(cls, text: str) -> str:
         converted_text = ""
         text_length = len(text)
-        for index in range(text_length):
+        for index, current_letter in enumerate(text):
+            converted_letter = ""
             if index > 0:
                 previous_letter = text[index - 1]
             else:
                 previous_letter = None
 
-            current_letter = text[index]
             if index < text_length - 1:
                 next_letter = text[index + 1]
             else:
@@ -45,56 +75,31 @@ class Cyr2Lat:
 
             if current_letter.lower() in PRAVILY_KANVERTACYJ:
                 converted_letter = PRAVILY_KANVERTACYJ[current_letter.lower()]
-                if current_letter.isupper():
-                    converted_letter = converted_letter.upper()
-
-                converted_text += converted_letter
+                converted_letter = set_correct_case(converted_letter, current_letter)
             elif current_letter.lower() == "л":
                 if next_letter and next_letter.lower() in ("ь",) + tuple(
                     PRAVILY_KANVERTACYJ_Z_J.keys()
                 ):
-                    converted_text += "l" if current_letter.islower() else "L"
+                    converted_letter = set_correct_case("l", current_letter)
                 else:
-                    converted_text += "ł" if current_letter.islower() else "Ł"
+                    converted_letter = set_correct_case("ł", current_letter)
             # могуць змякчацца асобна ад галосных літар пасля іх (мяккі знак)
             elif current_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA:
                 hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
                 if next_letter and next_letter.lower() == "ь":
-                    converted_text += soft if current_letter.islower() else soft.upper()
+                    converted_letter = set_correct_case(soft, current_letter)
                 else:
-                    converted_text += hard if current_letter.islower() else hard.upper()
+                    converted_letter = set_correct_case(hard, current_letter)
             elif current_letter.lower() == "х":
-                converted_text += "ch" if current_letter.islower() else "Ch"
+                converted_letter = "ch" if current_letter.islower() else "Ch"
             elif current_letter.lower() == "ь" or current_letter.lower() == "'":
                 pass
             # Перадаюцца праз i/j
             elif current_letter.lower() in PRAVILY_KANVERTACYJ_Z_J:
-                if (
-                    not previous_letter
-                    or previous_letter.lower() in HALOSNYJA
-                    or not previous_letter.isalpha()
-                    or previous_letter == "'"
-                ) and current_letter.lower() != "і":
-                    base = "j" if current_letter.islower() else "J"
-                else:
-                    base = "i" if current_letter.islower() else "I"
-
-                second_letter = PRAVILY_KANVERTACYJ_Z_J[current_letter.lower()]
-                if (
-                    current_letter.lower() != "і"
-                    and previous_letter
-                    and previous_letter.lower() == "л"
-                ):
-                    converted_letter = (
-                        second_letter
-                        if current_letter.islower()
-                        else second_letter.upper()
-                    )
-                else:
-                    converted_letter = base + second_letter
-
-                converted_text += converted_letter
+                converted_letter = karvertavac_z_j(current_letter, previous_letter)
             else:
-                converted_text += current_letter
+                converted_letter = current_letter
+
+            converted_text += converted_letter
 
         return converted_text
