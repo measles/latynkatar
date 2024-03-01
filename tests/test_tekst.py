@@ -3,6 +3,8 @@ try:
     from latynkatar import Cyr2Lat
 except ModuleNotFoundError:
     from src.latynkatar import Cyr2Lat
+    
+from time import monotonic
 
 # Узор узяты з часопіса PAMYŁKA:
 # https://github.com/PAMYLKA-ZIN/pamylka-number-3/tree/main/PAMYLKA_ZIN_3_FOR_SHARING
@@ -77,3 +79,18 @@ def test_z_pamylki():
 
 def test_bahdanovicz():
     assert Cyr2Lat.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ
+
+
+def test_novaj_ziamloju():
+    with open("tests/data/novaja_ziamla.txt", "r") as novy_fail:
+        paema = novy_fail.read()
+        
+        start = monotonic()
+        _ = Cyr2Lat.convert(paema)
+        finish = monotonic()
+        
+        time_required = finish - start
+        
+        print(start, finish, time_required)
+        
+        assert time_required < 0.5
