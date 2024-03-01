@@ -34,9 +34,9 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
         or previous_letter == "'"
         or previous_letter.lower() == "ь"
     ) and current_letter.lower() != "і":
-        base = set_correct_case("j", current_letter)
+        base = "j"
     else:
-        base = set_correct_case("i", current_letter)
+        base = "i"
 
     second_letter = PRAVILY_KANVERTACYJ_Z_J[current_letter.lower()]
     if (
@@ -44,17 +44,17 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
         and previous_letter
         and previous_letter.lower() == "л"
     ):
-        converted_letter = (
-            second_letter if current_letter.islower() else second_letter.upper()
-        )
-    else:
-        converted_letter = base + second_letter
+        base = ""
+
+    converted_letter = set_correct_case(base + second_letter, current_letter)
 
     return converted_letter
 
 
 def set_correct_case(converted_letter: str, current_letter: str) -> str:
-    return converted_letter if current_letter.islower() else converted_letter.upper()
+    return (
+        converted_letter if current_letter.islower() else converted_letter.capitalize()
+    )
 
 
 class Cyr2Lat:
@@ -93,7 +93,7 @@ class Cyr2Lat:
                 else:
                     converted_letter = set_correct_case(hard, current_letter)
             elif current_letter.lower() == "х":
-                converted_letter = "ch" if current_letter.islower() else "Ch"
+                converted_letter = set_correct_case("ch", current_letter)
             elif current_letter.lower() == "ь" or current_letter.lower() == "'":
                 pass
             # Перадаюцца праз i/j

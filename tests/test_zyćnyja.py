@@ -7,3 +7,6 @@ except ModuleNotFoundError:
 
 def test_l():
     assert Cyr2Lat.convert("ЛаЭлЯЛуЛіЛюЛЁлЕлЬ лЛя") == "ŁaElAŁuLiLuLOlEl lLa"
+    
+def test_ch():
+    assert Cyr2Lat.convert("ХаХу ХЫВАХххххх Хіх") == "ChaChu ChYVAChchchchchch Chich"
