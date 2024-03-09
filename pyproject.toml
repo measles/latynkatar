@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "latynkatar"
-version = "1.1.0"
+version = "1.1.1"
 authors = [
   { name="Andrej Zacharevicz", email="zahar.by@gmail.com" },
 ]
-description = """EN: Simple and small package to convert belarussian cyrillic text to a  modern latin (the one with č, š and ǔ).
+description = """EN: Simple and small package to convert belarussian cyrillic text to a modern (the one with ž, č, š and v) and classic (the one with ż, cz, sz and w) latin .
 
-BE: Просты і невялікі пакет для канвертацыі беларускай кірыліцы ў сучасную лацінку (з č, š і ǔ)."""
+BE: Просты і невялікі пакет для канвертацыі беларускай кірыліцы ў сучасную (з ž, č, š і v) і класічную (з ż, cz, sz і w) лацінку."""
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
