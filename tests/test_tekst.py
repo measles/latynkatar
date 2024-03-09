@@ -30,6 +30,17 @@ biełaruskich navukoǔcaǔ i daslednikaǔ dakładnych i pryrodaznaǔčych navuk 
 navukova-papularnaha časopisu Pamyłka Zin.
 Bolš detalaǔ apaviadaje pieršy artykuł numaru.
 """
+UZOR_PAMYŁKA_KLASIČNY = """Witajem ciabie, czytaczu!
+Heta treci numar PAMYŁKA ZIN!
+My wielmi cieszymsia, szto da kamandy stwaralnikaǔ praciahwajuć dałuczacca
+nowyja nawukoǔcy i mastaki! I my budziem radyja kożnamu nowamu ǔdzielniku!
+Siabry, my redakcyjaj nadumali zapaczatkawać premiju – «Bizon Higs». Tamu hety
+numar my pryswiaczajem usim biełaruskim nawukoǔcam i choczam anansawać premiju,
+jakaja budzie ǔwasablać saboj Biełaruś i nawuku razam! Heta ǔznaharoda dla
+biełaruskich nawukoǔcaǔ i daslednikaǔ dakładnych i pryrodaznaǔczych nawuk ad
+nawukowa-papularnaha czasopisu Pamyłka Zin.
+Bolsz detalaǔ apawiadaje pierszy artykuł numaru.
+"""
 
 PRYKŁAD_BAHDANOVIČ = """Маладыя гады,
 Маладыя жаданні!
@@ -71,26 +82,66 @@ Poǔny śvietłymi dniami!
 Pralatajcie, hady,
 Załatymi ahniami!
 """
+UZOR_BAHDANOVIČ_KLASICZNY = """Maładyja hady,
+Maładyja żadanni!
+Ni żudy, ni nudy,
+Tolki szczaście kachańnia!
+ 
+Pomnisz tolki krasu,
+Miły twaryk dziawoczy,
+Załatuju kasu,
+Siniawatyja woczy!
+
+Ciomny sad-winahrad,
+Ćwiet bialeńki wiszniowy, —
+I ahnisty pahlad,
+I haraczyja słowy!
+ 
+Budź ża, wiek małady,
+Poǔny świetłymi dniami!
+Pralatajcie, hady,
+Załatymi ahniami!
+"""
+
+with open("tests/data/novaja_ziamla.txt", "r") as novy_fail:
+    NOVAJA_ZIAMLA = novy_fail.read()
 
 
 def test_z_pamylki():
     assert Cyr2Lat.convert(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA
 
 
+def test_z_pamylki_klasiczny():
+    assert Cyr2Lat.convert_classic(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA_KLASIČNY
+
+
 def test_bahdanovicz():
     assert Cyr2Lat.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ
 
 
+def test_bahdanovicz_klasiczny():
+    assert Cyr2Lat.convert_classic(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ_KLASICZNY
+
+
 def test_novaj_ziamloju():
-    with open("tests/data/novaja_ziamla.txt", "r") as novy_fail:
-        paema = novy_fail.read()
+    start = monotonic()
+    _ = Cyr2Lat.convert(NOVAJA_ZIAMLA)
+    finish = monotonic()
+    
+    time_required = finish - start
+    
+    print(start, finish, time_required)
+    
+    assert time_required < 0.5
         
-        start = monotonic()
-        _ = Cyr2Lat.convert(paema)
-        finish = monotonic()
         
-        time_required = finish - start
-        
-        print(start, finish, time_required)
-        
-        assert time_required < 0.5
+def test_novaj_ziamloju_klasicny():
+    start = monotonic()
+    _ = Cyr2Lat.convert_classic(NOVAJA_ZIAMLA)
+    finish = monotonic()
+    
+    time_required = finish - start
+    
+    print(start, finish, time_required)
+    
+    assert time_required < 0.5

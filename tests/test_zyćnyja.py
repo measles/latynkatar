@@ -10,3 +10,27 @@ def test_l():
     
 def test_ch():
     assert Cyr2Lat.convert("ХаХу ХЫВАХххххх Хіх") == "ChaChu ChYVAChchchchchch Chich"
+    
+def test_sz():
+    assert Cyr2Lat.convert_classic("ШашуШышшшшшшш") == "SzaszuSzyszszszszszszsz"
+
+def test_š():
+    assert Cyr2Lat.convert("ШашуШышшшшшшш") == "ŠašuŠyššššššš"
+
+def test_cz():
+    assert Cyr2Lat.convert_classic("чАЧыЧУ") == "czACzyCzU"
+    
+def test_č():
+    assert Cyr2Lat.convert("чАЧыЧУ") == "čAČyČU"
+    
+def test_ż():
+    assert Cyr2Lat.convert_classic("жУрАвІнЫЖэЖЫ") == "żUrAwInYŻeŻY"
+    
+def test_ž():
+    assert Cyr2Lat.convert("жУрАвІнЫЖэЖЫ") == "žUrAvInYŽeŽY"
+    
+def test_w():
+    assert Cyr2Lat.convert_classic("войт і Ваявода") == "wojt i Wajawoda"
+    
+def test_v():
+    assert Cyr2Lat.convert("войт і Ваявода") == "vojt i Vajavoda"
