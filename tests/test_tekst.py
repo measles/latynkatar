@@ -21,25 +21,25 @@ PRYKŁAD_PAMYŁKA = """Вітаем цябе, чытачу!
 """
 UZOR_PAMYŁKA = """Vitajem ciabie, čytaču!
 Heta treci numar PAMYŁKA ZIN!
-My vielmi ciešymsia, što da kamandy stvaralnikaǔ praciahvajuć dałučacca
-novyja navukoǔcy i mastaki! I my budziem radyja kožnamu novamu ǔdzielniku!
+My vielmi ciešymsia, što da kamandy stvaralnikaŭ praciahvajuć dałučacca
+novyja navukoŭcy i mastaki! I my budziem radyja kožnamu novamu ŭdzielniku!
 Siabry, my redakcyjaj nadumali zapačatkavać premiju – «Bizon Higs». Tamu hety
-numar my prysviačajem usim biełaruskim navukoǔcam i chočam anansavać premiju,
-jakaja budzie ǔvasablać saboj Biełaruś i navuku razam! Heta ǔznaharoda dla
-biełaruskich navukoǔcaǔ i daslednikaǔ dakładnych i pryrodaznaǔčych navuk ad
+numar my prysviačajem usim biełaruskim navukoŭcam i chočam anansavać premiju,
+jakaja budzie ŭvasablać saboj Biełaruś i navuku razam! Heta ŭznaharoda dla
+biełaruskich navukoŭcaŭ i daslednikaŭ dakładnych i pryrodaznaŭčych navuk ad
 navukova-papularnaha časopisu Pamyłka Zin.
-Bolš detalaǔ apaviadaje pieršy artykuł numaru.
+Bolš detalaŭ apaviadaje pieršy artykuł numaru.
 """
 UZOR_PAMYŁKA_KLASIČNY = """Witajem ciabie, czytaczu!
 Heta treci numar PAMYŁKA ZIN!
-My wielmi cieszymsia, szto da kamandy stwaralnikaǔ praciahwajuć dałuczacca
-nowyja nawukoǔcy i mastaki! I my budziem radyja kożnamu nowamu ǔdzielniku!
+My wielmi cieszymsia, szto da kamandy stwaralnikaŭ praciahwajuć dałuczacca
+nowyja nawukoŭcy i mastaki! I my budziem radyja kożnamu nowamu ŭdzielniku!
 Siabry, my redakcyjaj nadumali zapaczatkawać premiju – «Bizon Higs». Tamu hety
-numar my pryswiaczajem usim biełaruskim nawukoǔcam i choczam anansawać premiju,
-jakaja budzie ǔwasablać saboj Biełaruś i nawuku razam! Heta ǔznaharoda dla
-biełaruskich nawukoǔcaǔ i daslednikaǔ dakładnych i pryrodaznaǔczych nawuk ad
+numar my pryswiaczajem usim biełaruskim nawukoŭcam i choczam anansawać premiju,
+jakaja budzie ŭwasablać saboj Biełaruś i nawuku razam! Heta ŭznaharoda dla
+biełaruskich nawukoŭcaŭ i daslednikaŭ dakładnych i pryrodaznaŭczych nawuk ad
 nawukowa-papularnaha czasopisu Pamyłka Zin.
-Bolsz detalaǔ apawiadaje pierszy artykuł numaru.
+Bolsz detalaŭ apawiadaje pierszy artykuł numaru.
 """
 
 PRYKŁAD_BAHDANOVIČ = """Маладыя гады,
@@ -78,7 +78,7 @@ I ahnisty pahlad,
 I haračyja słovy!
  
 Budź ža, viek małady,
-Poǔny śvietłymi dniami!
+Poŭny śvietłymi dniami!
 Pralatajcie, hady,
 Załatymi ahniami!
 """
@@ -98,7 +98,7 @@ I ahnisty pahlad,
 I haraczyja słowy!
  
 Budź ża, wiek małady,
-Poǔny świetłymi dniami!
+Poŭny świetłymi dniami!
 Pralatajcie, hady,
 Załatymi ahniami!
 """
