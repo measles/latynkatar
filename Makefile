@@ -3,7 +3,7 @@ venv:
 	./venv/bin/python3 -m pip install -r requirements.txt
 	
 test:
-	python3 -m pytest tests -lvv -ra
+	python3 -m pytest tests -lvv -ra --junitxml=output.xml
 
 test-env:
 	python3 -m venv test-venv
