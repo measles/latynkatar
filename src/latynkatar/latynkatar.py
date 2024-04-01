@@ -23,7 +23,7 @@ from .variables import (
     HALOSNYJA,
     PRAVILY_KANVERTACYJ_Z_J,
     MOHUC_PAZNACZACCA_JAK_MIAKKIJA,
-    KLASICZNYJA_PRAWILY_KANVERTACYJI
+    KLASICZNYJA_PRAWILY_KANVERTACYJI,
 )
 
 
@@ -47,20 +47,17 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
     ):
         base = ""
 
-    converted_letter = set_correct_case(base + second_letter, current_letter)
+    converted_letter = base + second_letter
 
     return converted_letter
 
 
-def set_correct_case(converted_letter: str, current_letter: str) -> str:
-    return (
-        converted_letter if current_letter.islower() else converted_letter.capitalize()
-    )
-
-    
-def convert(text: str, classic:bool = False) -> str:
+def convert(text: str, classic: bool = False) -> str:
     converted_text = ""
     text_length = len(text)
+    biahuczyja_pravily = (
+        KLASICZNYJA_PRAWILY_KANVERTACYJI if classic else PRAVILY_KANVERTACYJ
+    )
     for index, current_letter in enumerate(text):
         converted_letter = ""
         if index > 0:
@@ -73,29 +70,24 @@ def convert(text: str, classic:bool = False) -> str:
         else:
             next_letter = None
 
-        if current_letter.lower() in PRAVILY_KANVERTACYJ:
-            if classic:
-                converted_letter = KLASICZNYJA_PRAWILY_KANVERTACYJI[current_letter.lower()]
-            else:
-                converted_letter = PRAVILY_KANVERTACYJ[current_letter.lower()]
-
-            converted_letter = set_correct_case(converted_letter, current_letter)
+        if current_letter.lower() in biahuczyja_pravily:
+            converted_letter = biahuczyja_pravily[current_letter.lower()]
         elif current_letter.lower() == "л":
             if next_letter and next_letter.lower() in ("ь", "л") + tuple(
                 PRAVILY_KANVERTACYJ_Z_J.keys()
             ):
-                converted_letter = set_correct_case("l", current_letter)
+                converted_letter = "l"
             else:
-                converted_letter = set_correct_case("ł", current_letter)
+                converted_letter = "ł"
         # могуць змякчацца асобна ад галосных літар пасля іх (мяккі знак)
         elif current_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA:
             hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
             if next_letter and next_letter.lower() == "ь":
-                converted_letter = set_correct_case(soft, current_letter)
+                converted_letter = soft
             else:
-                converted_letter = set_correct_case(hard, current_letter)
+                converted_letter = hard
         elif current_letter.lower() == "х":
-            converted_letter = set_correct_case("ch", current_letter)
+            converted_letter = "ch"
         elif current_letter.lower() == "ь" or current_letter.lower() == "'":
             pass
         # Перадаюцца праз i/j
@@ -104,6 +96,11 @@ def convert(text: str, classic:bool = False) -> str:
         else:
             converted_letter = current_letter
 
+        converted_letter = (
+            converted_letter
+            if current_letter.islower()
+            else converted_letter.capitalize()
+        )
         converted_text += converted_letter
 
     return converted_text
@@ -113,7 +110,7 @@ class Cyr2Lat:
     @classmethod
     def convert(cls, text: str) -> str:
         return convert(text=text, classic=False)
-    
+
     @classmethod
     def convert_classic(cls, text: str) -> str:
         return convert(text=text, classic=True)
