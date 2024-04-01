@@ -23,7 +23,7 @@ from .variables import (
     HALOSNYJA,
     PRAVILY_KANVERTACYJ_Z_J,
     MOHUC_PAZNACZACCA_JAK_MIAKKIJA,
-    KLASICZNYJA_PRAWILY_KANVERTACYJI
+    KLASICZNYJA_PRAWILY_KANVERTACYJI,
 )
 
 
@@ -51,11 +51,13 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
 
     return converted_letter
 
-    
-def convert(text: str, classic:bool = False) -> str:
+
+def convert(text: str, classic: bool = False) -> str:
     converted_text = ""
     text_length = len(text)
-    biahuczyja_pravily = KLASICZNYJA_PRAWILY_KANVERTACYJI if classic else PRAVILY_KANVERTACYJ
+    biahuczyja_pravily = (
+        KLASICZNYJA_PRAWILY_KANVERTACYJI if classic else PRAVILY_KANVERTACYJ
+    )
     for index, current_letter in enumerate(text):
         converted_letter = ""
         if index > 0:
@@ -94,7 +96,11 @@ def convert(text: str, classic:bool = False) -> str:
         else:
             converted_letter = current_letter
 
-        converted_letter = converted_letter if current_letter.islower() else converted_letter.capitalize()
+        converted_letter = (
+            converted_letter
+            if current_letter.islower()
+            else converted_letter.capitalize()
+        )
         converted_text += converted_letter
 
     return converted_text
@@ -104,7 +110,7 @@ class Cyr2Lat:
     @classmethod
     def convert(cls, text: str) -> str:
         return convert(text=text, classic=False)
-    
+
     @classmethod
     def convert_classic(cls, text: str) -> str:
         return convert(text=text, classic=True)

@@ -49,12 +49,14 @@ PRAVILY_KANVERTACYJ = {
     "ш": "š",
 }
 KLASICZNYJA_PRAWILY_KANVERTACYJI = dict(PRAVILY_KANVERTACYJ)
-KLASICZNYJA_PRAWILY_KANVERTACYJI.update({
+KLASICZNYJA_PRAWILY_KANVERTACYJI.update(
+    {
         "ч": "cz",
         "ш": "sz",
         "ж": "ż",
         "в": "w",
-})
+    }
+)
 PRAVILY_KANVERTACYJ_Z_J = {
     "е": "e",
     "ё": "o",

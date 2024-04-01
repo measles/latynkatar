@@ -3,7 +3,7 @@ try:
     from latynkatar import Cyr2Lat
 except ModuleNotFoundError:
     from src.latynkatar import Cyr2Lat
-    
+
 from time import monotonic
 
 # Узор узяты з часопіса PAMYŁKA:
@@ -127,21 +127,21 @@ def test_novaj_ziamloju():
     start = monotonic()
     _ = Cyr2Lat.convert(NOVAJA_ZIAMLA)
     finish = monotonic()
-    
+
     time_required = finish - start
-    
+
     print(start, finish, time_required)
-    
+
     assert time_required < 0.5
-        
-        
+
+
 def test_novaj_ziamloju_klasicny():
     start = monotonic()
     _ = Cyr2Lat.convert_classic(NOVAJA_ZIAMLA)
     finish = monotonic()
-    
+
     time_required = finish - start
-    
+
     print(start, finish, time_required)
-    
+
     assert time_required < 0.5
