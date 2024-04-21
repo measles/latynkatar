@@ -57,10 +57,31 @@ KLASICZNYJA_PRAWILY_KANVERTACYJI.update(
         "в": "w",
     }
 )
-PRAVILY_KANVERTACYJ_Z_J = {
+JOTAWANYJA_LITARY = {
     "е": "e",
     "ё": "o",
     "і": "",
     "ю": "u",
     "я": "a",
 }
+ZYCZNYJA_Z_TRANZITAM = (
+    "б",
+    "в",
+    "д",
+    "ж",
+    "з",
+    "й",
+    "л",
+    "м",
+    "н",
+    "п",
+    "р",
+    "с",
+    "т",
+    "ў",
+    "ф",
+    "ц",
+    "ч",
+    "ш",
+)
+ZYCZNYJA_BIEZ_TRANZITU = ("г", "к", "х")

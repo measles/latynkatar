@@ -1,38 +1,25 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Паведамленне аб памылцы
+about: Раскажыце што сталася, каб дапамагчы выправіць праблему
 title: ''
-labels: ''
+labels: 'bug'
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Апісанне праблемы**
+Простае і кароткае апісанне таго што сталася.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Каб паўтарыць**
+Дайце максімальна кароткі кавалак тэксту, на каторым магчыма ўбачыць памылку
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Чаканы вынік**
+Караценька раскажыце што вы чакалі ўбачыць у гэтай сітуацыі.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Асяроддзе, у каторым узнікла праблема (запоўніце наступныя палі):**
+ - Версія: [напрыклад, 1.2.1]
+ - OS: [напрыклад, Gobo Linux 1.3.7]
+ - Версія Python: [напрыклад, 3.12]
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**Дадатак**
+Напішыце ўсё астатняе, што на вашую думку тычыцца гэтай праблемы. Не стрымлівайце сябе.

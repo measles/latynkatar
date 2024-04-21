@@ -1,20 +1,19 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Запыт новых магчымасцяў
+about: Прапануйце ідэю для нашага праекту
 title: ''
 labels: ''
 assignees: ''
 
 ---
+**Якія задачы дапаможа вырашаць новая магчымасць? Раскажыце, калі ласка.**
+Яснае і паслядоўнае апісанне таго, што не так з цяперашняй версіяй. Напрыклад "Мяне заўжды дратавала [...]"
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Апішыце якія магчымасці вы б хацелі атрымаць**
+Ясна і паслядоўна апішыце што мусіць стацца, каб вырашыць апісаную вышэй праблему.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Ці існуюць нейкія альтэрнатыўныя спосабы вырашыць праблему?**
+Караценька і змястоўна апішыце якія яшчэ могуць быць альтэрнатыўныя спосабы даць рады праблеме. Калі нейкія ёсць.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Дадатак**
+Напішыце ўсё астатняе, што на вашую думку тычыцца гэтай праблемы. Не стрымлівайце сябе.
