@@ -1,7 +1,7 @@
 """
 This file is part of Łatynkatar.
 
-Latynkatar is free software: you can redistribute it and/or modify it under the
+Łatynkatar is free software: you can redistribute it and/or modify it under the
 terms of the GNU Lesser General Public License v3 (LGPLv3) as published by the 
 Free Software Foundation, either version 3 of the License, or (at your option) 
 any later version.
@@ -18,5 +18,11 @@ You should have received a copy of the GNU Lesser General Public License v3
 :copyright: (c) 2023, 2024 by Andrej Zacharevicz.
 """
 
-from .cyr2lat import Cyr2Lat
-from .lat2cyr import Lat2Cyr
+def lat_convert(text:str, classic:bool = False) -> str:
+    pass
+
+
+class Lat2Cyr:
+    @classmethod
+    def convert(cls, text: str) -> str:
+        return lat_convert(text=text, classic=False)
