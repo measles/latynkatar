@@ -6,7 +6,7 @@ except ModuleNotFoundError:
 
 
 def test_l():
-    assert Lat2Cyr.convert("ŁaElAŁuLiLuLOlEl lLa") == "ЛаЭлЯЛуЛіЛюЛЁлЕлЬ лЛя"
+    assert Lat2Cyr.convert("ŁaElAŁuLiLuLOlEl lLa") == "ЛаЭлЯЛуЛіЛюЛЁлЕль льЛя"
 
 
 def test_ch():
