@@ -58,6 +58,7 @@ def convert(text: str, classic: bool = False) -> str:
     biahuczyja_pravily = (
         KLASICZNYJA_PRAWILY_KANVERTACYJI if classic else PRAVILY_KANVERTACYJ
     )
+
     for index, current_letter in enumerate(text):
         converted_letter = ""
         if index > 0:
@@ -70,13 +71,24 @@ def convert(text: str, classic: bool = False) -> str:
         else:
             next_letter = None
 
+        if index < text_length - 2:
+            next_next_letter = text[index+2]
+        else:
+            next_next_letter = None
+
+
         if current_letter.lower() in biahuczyja_pravily:
             converted_letter = biahuczyja_pravily[current_letter.lower()]
         elif current_letter.lower() == "л":
-            if next_letter and next_letter.lower() in ("ь", "л") + tuple(
+            if next_letter and next_letter.lower() in ("ь",) + tuple(
                 PRAVILY_KANVERTACYJ_Z_J.keys()
             ):
                 converted_letter = "l"
+            elif next_letter and (next_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA or next_letter.lower() == "л"):
+                if next_next_letter and (next_next_letter.lower() in PRAVILY_KANVERTACYJ_Z_J or next_next_letter.lower() == "ь"):
+                    converted_letter = "l"
+                else:
+                    converted_letter = "ł"
             else:
                 converted_letter = "ł"
         # могуць змякчацца асобна ад галосных літар пасля іх (мяккі знак)
@@ -84,6 +96,11 @@ def convert(text: str, classic: bool = False) -> str:
             hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
             if next_letter and next_letter.lower() == "ь":
                 converted_letter = soft
+            elif next_letter and (next_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA or next_letter.lower() == "л"):
+                if next_next_letter and (next_next_letter.lower() in PRAVILY_KANVERTACYJ_Z_J or next_next_letter.lower() == "ь"):
+                    converted_letter = soft
+                else:
+                    converted_letter = hard
             else:
                 converted_letter = hard
         elif current_letter.lower() == "х":

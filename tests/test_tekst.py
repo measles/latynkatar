@@ -26,7 +26,7 @@ novyja navukoŭcy i mastaki! I my budziem radyja kožnamu novamu ŭdzielniku!
 Siabry, my redakcyjaj nadumali zapačatkavać premiju – «Bizon Higs». Tamu hety
 numar my prysviačajem usim biełaruskim navukoŭcam i chočam anansavać premiju,
 jakaja budzie ŭvasablać saboj Biełaruś i navuku razam! Heta ŭznaharoda dla
-biełaruskich navukoŭcaŭ i daslednikaŭ dakładnych i pryrodaznaŭčych navuk ad
+biełaruskich navukoŭcaŭ i daślednikaŭ dakładnych i pryrodaznaŭčych navuk ad
 navukova-papularnaha časopisu Pamyłka Zin.
 Bolš detalaŭ apaviadaje pieršy artykuł numaru.
 """
@@ -37,7 +37,7 @@ nowyja nawukoŭcy i mastaki! I my budziem radyja kożnamu nowamu ŭdzielniku!
 Siabry, my redakcyjaj nadumali zapaczatkawać premiju – «Bizon Higs». Tamu hety
 numar my pryswiaczajem usim biełaruskim nawukoŭcam i choczam anansawać premiju,
 jakaja budzie ŭwasablać saboj Biełaruś i nawuku razam! Heta ŭznaharoda dla
-biełaruskich nawukoŭcaŭ i daslednikaŭ dakładnych i pryrodaznaŭczych nawuk ad
+biełaruskich nawukoŭcaŭ i daślednikaŭ dakładnych i pryrodaznaŭczych nawuk ad
 nawukowa-papularnaha czasopisu Pamyłka Zin.
 Bolsz detalaŭ apawiadaje pierszy artykuł numaru.
 """
@@ -63,7 +63,7 @@ PRYKŁAD_BAHDANOVIČ = """Маладыя гады,
 Залатымі агнямі!
 """
 UZOR_BAHDANOVIČ = """Maładyja hady,
-Maładyja žadanni!
+Maładyja žadańni!
 Ni žudy, ni nudy,
 Tolki ščaście kachańnia!
  
@@ -83,7 +83,7 @@ Pralatajcie, hady,
 Załatymi ahniami!
 """
 UZOR_BAHDANOVIČ_KLASICZNY = """Maładyja hady,
-Maładyja żadanni!
+Maładyja żadańni!
 Ni żudy, ni nudy,
 Tolki szczaście kachańnia!
  
