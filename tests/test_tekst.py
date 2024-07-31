@@ -24,7 +24,7 @@ Heta treci numar PAMYŁKA ZIN!
 My vielmi ciešymsia, što da kamandy stvaralnikaŭ praciahvajuć dałučacca
 novyja navukoŭcy i mastaki! I my budziem radyja kožnamu novamu ŭdzielniku!
 Siabry, my redakcyjaj nadumali zapačatkavać premiju – «Bizon Higs». Tamu hety
-numar my prysviačajem usim biełaruskim navukoŭcam i chočam anansavać premiju,
+numar my pryśviačajem usim biełaruskim navukoŭcam i chočam anansavać premiju,
 jakaja budzie ŭvasablać saboj Biełaruś i navuku razam! Heta ŭznaharoda dla
 biełaruskich navukoŭcaŭ i daślednikaŭ dakładnych i pryrodaznaŭčych navuk ad
 navukova-papularnaha časopisu Pamyłka Zin.
@@ -35,7 +35,7 @@ Heta treci numar PAMYŁKA ZIN!
 My wielmi cieszymsia, szto da kamandy stwaralnikaŭ praciahwajuć dałuczacca
 nowyja nawukoŭcy i mastaki! I my budziem radyja kożnamu nowamu ŭdzielniku!
 Siabry, my redakcyjaj nadumali zapaczatkawać premiju – «Bizon Higs». Tamu hety
-numar my pryswiaczajem usim biełaruskim nawukoŭcam i choczam anansawać premiju,
+numar my pryświaczajem usim biełaruskim nawukoŭcam i choczam anansawać premiju,
 jakaja budzie ŭwasablać saboj Biełaruś i nawuku razam! Heta ŭznaharoda dla
 biełaruskich nawukoŭcaŭ i daślednikaŭ dakładnych i pryrodaznaŭczych nawuk ad
 nawukowa-papularnaha czasopisu Pamyłka Zin.

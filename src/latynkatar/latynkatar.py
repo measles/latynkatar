@@ -21,7 +21,8 @@ You should have received a copy of the GNU Lesser General Public License v3
 from .variables import (
     PRAVILY_KANVERTACYJ,
     HALOSNYJA,
-    PRAVILY_KANVERTACYJ_Z_J,
+    JOTAWANYJA_LITARY,
+    ZYCZNYJA_Z_TRANZITAM,
     MOHUC_PAZNACZACCA_JAK_MIAKKIJA,
     KLASICZNYJA_PRAWILY_KANVERTACYJI,
 )
@@ -39,7 +40,7 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
     else:
         base = "i"
 
-    second_letter = PRAVILY_KANVERTACYJ_Z_J[current_letter.lower()]
+    second_letter = JOTAWANYJA_LITARY[current_letter.lower()]
     if (
         current_letter.lower() != "і"
         and previous_letter
@@ -72,20 +73,22 @@ def convert(text: str, classic: bool = False) -> str:
             next_letter = None
 
         if index < text_length - 2:
-            next_next_letter = text[index+2]
+            next_next_letter = text[index + 2]
         else:
             next_next_letter = None
-
 
         if current_letter.lower() in biahuczyja_pravily:
             converted_letter = biahuczyja_pravily[current_letter.lower()]
         elif current_letter.lower() == "л":
             if next_letter and next_letter.lower() in ("ь",) + tuple(
-                PRAVILY_KANVERTACYJ_Z_J.keys()
+                JOTAWANYJA_LITARY.keys()
             ):
                 converted_letter = "l"
-            elif next_letter and (next_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA or next_letter.lower() == "л"):
-                if next_next_letter and (next_next_letter.lower() in PRAVILY_KANVERTACYJ_Z_J or next_next_letter.lower() == "ь"):
+            elif next_letter and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM:
+                if next_next_letter and (
+                    next_next_letter.lower() in JOTAWANYJA_LITARY
+                    or next_next_letter.lower() == "ь"
+                ):
                     converted_letter = "l"
                 else:
                     converted_letter = "ł"
@@ -96,11 +99,14 @@ def convert(text: str, classic: bool = False) -> str:
             hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
             if next_letter and next_letter.lower() == "ь":
                 converted_letter = soft
-            elif next_letter and (next_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA or next_letter.lower() == "л"):
-                if next_next_letter and (next_next_letter.lower() in PRAVILY_KANVERTACYJ_Z_J or next_next_letter.lower() == "ь"):
-                    converted_letter = soft
-                else:
-                    converted_letter = hard
+            elif (next_letter and next_next_letter) and (
+                next_letter.lower() in ZYCZNYJA_Z_TRANZITAM
+                and (
+                    next_next_letter.lower() in JOTAWANYJA_LITARY
+                    or next_next_letter.lower() == "ь"
+                )
+            ):
+                converted_letter = soft
             else:
                 converted_letter = hard
         elif current_letter.lower() == "х":
@@ -108,7 +114,7 @@ def convert(text: str, classic: bool = False) -> str:
         elif current_letter.lower() == "ь" or current_letter.lower() == "'":
             pass
         # Перадаюцца праз i/j
-        elif current_letter.lower() in PRAVILY_KANVERTACYJ_Z_J:
+        elif current_letter.lower() in JOTAWANYJA_LITARY:
             converted_letter = karvertavac_z_j(current_letter, previous_letter)
         else:
             converted_letter = current_letter

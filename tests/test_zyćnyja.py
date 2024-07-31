@@ -43,3 +43,7 @@ def test_w():
 
 def test_v():
     assert Cyr2Lat.convert("войт і Ваявода") == "vojt i Vajavoda"
+
+
+def test_miakkaści():
+    assert Cyr2Lat.convert("снег смех поспех святы") == "śnieh śmiech pośpiech śviaty"
