@@ -47,6 +47,7 @@ PRAVILY_KANVERTACYJ = {
     "ф": "f",
     "ч": "č",
     "ш": "š",
+    "х": "ch",
 }
 KLASICZNYJA_PRAWILY_KANVERTACYJI = dict(PRAVILY_KANVERTACYJ)
 KLASICZNYJA_PRAWILY_KANVERTACYJI.update(

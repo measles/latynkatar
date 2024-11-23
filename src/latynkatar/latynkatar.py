@@ -114,8 +114,6 @@ def convert(text: str, classic: bool = False) -> str:
                     converted_letter = hard
             else:
                 converted_letter = hard
-        elif current_letter.lower() == "х":
-            converted_letter = "ch"
         elif current_letter.lower() == "ь" or current_letter.lower() == "'":
             pass
         # Перадаюцца праз i/j
