@@ -24,6 +24,7 @@ MOHUC_PAZNACZACCA_JAK_MIAKKIJA = {
     "с": ("s", "ś"),
     "ц": ("c", "ć"),
     "з": ("z", "ź"),
+    "л": ("ł", "l"),
 }
 PRAVILY_KANVERTACYJ = {
     "а": "a",
@@ -47,6 +48,7 @@ PRAVILY_KANVERTACYJ = {
     "ф": "f",
     "ч": "č",
     "ш": "š",
+    "х": "ch",
 }
 KLASICZNYJA_PRAWILY_KANVERTACYJI = dict(PRAVILY_KANVERTACYJ)
 KLASICZNYJA_PRAWILY_KANVERTACYJI.update(

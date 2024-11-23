@@ -79,38 +79,31 @@ def convert(text: str, classic: bool = False) -> str:
 
         if current_letter.lower() in biahuczyja_pravily:
             converted_letter = biahuczyja_pravily[current_letter.lower()]
-        elif current_letter.lower() == "л":
-            if next_letter and next_letter.lower() in ("ь",) + tuple(
-                JOTAWANYJA_LITARY.keys()
-            ):
-                converted_letter = "l"
-            elif next_letter and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM:
-                if next_next_letter and (
-                    next_next_letter.lower() in JOTAWANYJA_LITARY
-                    or next_next_letter.lower() == "ь"
-                ):
-                    converted_letter = "l"
-                else:
-                    converted_letter = "ł"
-            else:
-                converted_letter = "ł"
-        # могуць змякчацца асобна ад галосных літар пасля іх (мяккі знак)
         elif current_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA:
             hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
             if next_letter and next_letter.lower() == "ь":
                 converted_letter = soft
-            elif (next_letter and next_next_letter) and (
-                next_letter.lower() in ZYCZNYJA_Z_TRANZITAM
+            elif (
+                next_letter
+                and current_letter.lower() == "л"
+                and next_letter.lower() in JOTAWANYJA_LITARY.keys()
+            ):
+                converted_letter = soft
+            elif (next_letter and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM) and (
+                next_next_letter
                 and (
                     next_next_letter.lower() in JOTAWANYJA_LITARY
                     or next_next_letter.lower() == "ь"
                 )
             ):
-                converted_letter = soft
+                if current_letter.lower() != "н" or (
+                    current_letter.lower() == "н" == next_letter.lower()
+                ):
+                    converted_letter = soft
+                else:
+                    converted_letter = hard
             else:
                 converted_letter = hard
-        elif current_letter.lower() == "х":
-            converted_letter = "ch"
         elif current_letter.lower() == "ь" or current_letter.lower() == "'":
             pass
         # Перадаюцца праз i/j
