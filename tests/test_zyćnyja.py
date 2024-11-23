@@ -46,4 +46,7 @@ def test_v():
 
 
 def test_miakkaści():
-    assert Cyr2Lat.convert("снег смех поспех святы") == "śnieh śmiech pośpiech śviaty"
+    assert (
+        Cyr2Lat.convert("снег смех поспех святы Валянцін жаданні")
+        == "śnieh śmiech pośpiech śviaty Valancin žadańni"
+    )

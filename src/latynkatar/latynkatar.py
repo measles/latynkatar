@@ -106,7 +106,12 @@ def convert(text: str, classic: bool = False) -> str:
                     or next_next_letter.lower() == "ь"
                 )
             ):
-                converted_letter = soft
+                if current_letter.lower() != "н" or (
+                    current_letter.lower() == "н" == next_letter.lower()
+                ):
+                    converted_letter = soft
+                else:
+                    converted_letter = hard
             else:
                 converted_letter = hard
         elif current_letter.lower() == "х":
