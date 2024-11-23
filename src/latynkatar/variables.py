@@ -24,6 +24,7 @@ MOHUC_PAZNACZACCA_JAK_MIAKKIJA = {
     "с": ("s", "ś"),
     "ц": ("c", "ć"),
     "з": ("z", "ź"),
+    "л": ("ł", "l"),
 }
 PRAVILY_KANVERTACYJ = {
     "а": "a",
