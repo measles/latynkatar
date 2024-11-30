@@ -53,7 +53,7 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
     return converted_letter
 
 
-def convert(text: str, classic: bool = False) -> str:
+def convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
     converted_text = ""
     text_length = len(text)
     biahuczyja_pravily = (
@@ -89,11 +89,15 @@ def convert(text: str, classic: bool = False) -> str:
                 and next_letter.lower() in JOTAWANYJA_LITARY.keys()
             ):
                 converted_letter = soft
-            elif (next_letter and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM) and (
-                next_next_letter
+            elif (
+                miakkasc
+                and (next_letter and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM)
                 and (
-                    next_next_letter.lower() in JOTAWANYJA_LITARY
-                    or next_next_letter.lower() == "ь"
+                    next_next_letter
+                    and (
+                        next_next_letter.lower() in JOTAWANYJA_LITARY
+                        or next_next_letter.lower() == "ь"
+                    )
                 )
             ):
                 if current_letter.lower() != "н" or (
@@ -124,9 +128,9 @@ def convert(text: str, classic: bool = False) -> str:
 
 class Cyr2Lat:
     @classmethod
-    def convert(cls, text: str) -> str:
-        return convert(text=text, classic=False)
+    def convert(cls, text: str, miakkasc: str = True) -> str:
+        return convert(text=text, classic=False, miakkasc=miakkasc)
 
     @classmethod
-    def convert_classic(cls, text: str) -> str:
-        return convert(text=text, classic=True)
+    def convert_classic(cls, text: str, miakkasc: str = True) -> str:
+        return convert(text=text, classic=True, miakkasc=miakkasc)

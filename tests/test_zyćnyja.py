@@ -50,3 +50,9 @@ def test_miakkaści():
         Cyr2Lat.convert("снег смех поспех святы Валянцін жаданні")
         == "śnieh śmiech pośpiech śviaty Valancin žadańni"
     )
+    
+def test_biez_miakkaści():
+    assert (
+        Cyr2Lat.convert("снег смех поспех святы Валянцін жаданні", miakkasc=False)
+        == "snieh smiech pospiech sviaty Valancin žadanni"
+    )
