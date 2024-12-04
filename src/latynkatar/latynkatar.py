@@ -53,6 +53,50 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
     return converted_letter
 
 
+def miakkuja_zycznyja(
+    current_letter: str, next_letter: str, next_next_letter: str, miakkasc: bool
+):
+    hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
+    converted_letter = ""
+    if next_letter and next_letter.lower() == "ь":
+        converted_letter = soft
+    elif (
+        next_letter
+        and current_letter.lower() == "л"
+        and next_letter.lower() in JOTAWANYJA_LITARY.keys()
+    ):
+        converted_letter = soft
+    elif (
+        next_next_letter
+        and current_letter.lower() == next_letter.lower() == "л"
+        and (
+            next_next_letter.lower() in JOTAWANYJA_LITARY.keys()
+            or next_next_letter.lower() == "ь"
+        )
+    ):
+        converted_letter = soft
+    elif (
+        miakkasc
+        and next_letter
+        and next_next_letter
+        and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM
+        and (
+            next_next_letter.lower() in JOTAWANYJA_LITARY
+            or next_next_letter.lower() == "ь"
+        )
+    ):
+        if current_letter.lower() != "н" or (
+            current_letter.lower() == "н" == next_letter.lower()
+        ):
+            converted_letter = soft
+        else:
+            converted_letter = hard
+    else:
+        converted_letter = hard
+
+    return converted_letter
+
+
 def convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
     converted_text = ""
     text_length = len(text)
@@ -80,34 +124,9 @@ def convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
         if current_letter.lower() in biahuczyja_pravily:
             converted_letter = biahuczyja_pravily[current_letter.lower()]
         elif current_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA:
-            hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
-            if next_letter and next_letter.lower() == "ь":
-                converted_letter = soft
-            elif (
-                next_letter
-                and current_letter.lower() == "л"
-                and next_letter.lower() in JOTAWANYJA_LITARY.keys()
-            ):
-                converted_letter = soft
-            elif (
-                miakkasc
-                and (next_letter and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM)
-                and (
-                    next_next_letter
-                    and (
-                        next_next_letter.lower() in JOTAWANYJA_LITARY
-                        or next_next_letter.lower() == "ь"
-                    )
-                )
-            ):
-                if current_letter.lower() != "н" or (
-                    current_letter.lower() == "н" == next_letter.lower()
-                ):
-                    converted_letter = soft
-                else:
-                    converted_letter = hard
-            else:
-                converted_letter = hard
+            converted_letter = miakkuja_zycznyja(
+                current_letter, next_letter, next_next_letter, miakkasc
+            )
         elif current_letter.lower() == "ь" or current_letter.lower() == "'":
             pass
         # Перадаюцца праз i/j

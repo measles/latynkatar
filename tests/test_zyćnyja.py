@@ -47,12 +47,15 @@ def test_v():
 
 def test_miakkaści():
     assert (
-        Cyr2Lat.convert("снег смех поспех святы Валянцін жаданні")
-        == "śnieh śmiech pośpiech śviaty Valancin žadańni"
+        Cyr2Lat.convert("снег смех поспех святы Валянцін жаданні пустазелле")
+        == "śnieh śmiech pośpiech śviaty Valancin žadańni pustazielle"
     )
-    
+
+
 def test_biez_miakkaści():
     assert (
-        Cyr2Lat.convert("снег смех поспех святы Валянцін жаданні", miakkasc=False)
-        == "snieh smiech pospiech sviaty Valancin žadanni"
+        Cyr2Lat.convert(
+            "снег смех поспех святы Валянцін жаданні пустазелле", miakkasc=False
+        )
+        == "snieh smiech pospiech sviaty Valancin žadanni pustazielle"
     )
