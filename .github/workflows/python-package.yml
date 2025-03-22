@@ -51,7 +51,7 @@ jobs:
         pip install -r requirements.txt
         pip install dist/*.whl
     - name: Test build package
-      run: python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
+      run: nox -s test
 
   upload:
     needs: package-tests
