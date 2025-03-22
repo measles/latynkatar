@@ -23,7 +23,7 @@ def blacked(session):
 
 @nox.session(tags=("tests", "lint"))
 def flake8(session):
-    session.install("flake8")
+    session.install("flake8", "flake8-pyproject")
     session.run("flake8", ".", "--count", "--exclude", ".nox,venv")
 
 

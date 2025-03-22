@@ -22,3 +22,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/measles/latynkatar"
 Issues = "https://github.com/measles/latynkatar/issues"
+
+[tool.flake8]
+max-line-length = 120
