@@ -46,7 +46,7 @@ PRYKŁAD_BAHDANOVIČ = """Маладыя гады,
 Маладыя жаданні!
 Ні жуды, ні нуды,
 Толькі шчасьце каханьня!
- 
+
 Помніш толькі красу,
 Мілы тварык дзявочы,
 Залатую касу,
@@ -56,7 +56,7 @@ PRYKŁAD_BAHDANOVIČ = """Маладыя гады,
 Цьвет бяленькі вішнёвы, —
 І агністы пагляд,
 І гарачыя словы!
- 
+
 Будзь жа, век малады,
 Поўны сьветлымі днямі!
 Пралятайце, гады,
@@ -66,7 +66,7 @@ UZOR_BAHDANOVIČ = """Maładyja hady,
 Maładyja žadańni!
 Ni žudy, ni nudy,
 Tolki ščaście kachańnia!
- 
+
 Pomniš tolki krasu,
 Miły tvaryk dziavočy,
 Załatuju kasu,
@@ -76,7 +76,7 @@ Ciomny sad-vinahrad,
 Ćviet bialeńki višniovy, —
 I ahnisty pahlad,
 I haračyja słovy!
- 
+
 Budź ža, viek małady,
 Poŭny śvietłymi dniami!
 Pralatajcie, hady,
@@ -86,7 +86,7 @@ UZOR_BAHDANOVIČ_KLASICZNY = """Maładyja hady,
 Maładyja żadańni!
 Ni żudy, ni nudy,
 Tolki szczaście kachańnia!
- 
+
 Pomnisz tolki krasu,
 Miły twaryk dziawoczy,
 Załatuju kasu,
@@ -96,7 +96,7 @@ Ciomny sad-winahrad,
 Ćwiet bialeńki wiszniowy, —
 I ahnisty pahlad,
 I haraczyja słowy!
- 
+
 Budź ża, wiek małady,
 Poŭny świetłymi dniami!
 Pralatajcie, hady,

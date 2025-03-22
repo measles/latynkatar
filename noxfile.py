@@ -1,9 +1,9 @@
 import nox
 
-nox.options.sessions = ["black", "test"]
+nox.options.sessions = ["black", "flake8", "test"]
 
 
-@nox.session(tags=("tests"))
+@nox.session(tags=("tests", "lint"))
 def black(session):
     session.install("black")
     session.run("black", "--check", "tests/", "src/", "noxfile.py")
@@ -19,6 +19,12 @@ def black_diff(session):
 def blacked(session):
     session.install("black")
     session.run("black", "tests", "src", "noxfile.py")
+
+
+@nox.session(tags=("tests", "lint"))
+def flake8(session):
+    session.install("flake8")
+    session.run("flake8", ".", "--count", "--exclude", ".nox,venv")
 
 
 @nox.session(tags=("tests"))
