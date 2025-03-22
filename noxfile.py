@@ -1,6 +1,6 @@
 import nox
 
-nox.options.sessions = ["black", "flake8", "test"]
+nox.options.sessions = ["black", "flake8", "mypy", "test"]
 
 
 @nox.session(tags=("tests", "lint"))
@@ -25,6 +25,12 @@ def blacked(session):
 def flake8(session):
     session.install("flake8")
     session.run("flake8", ".", "--count", "--exclude", ".nox,venv")
+
+
+@nox.session(tags=("tests", "lint"))
+def mypy(session):
+    session.install("mypy")
+    session.run("mypy", "-p", "src.latynkatar")
 
 
 @nox.session(tags=("tests"))

@@ -28,7 +28,7 @@ from .variables import (
 )
 
 
-def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
+def _kanvertavac_z_j(current_letter: str, previous_letter: str) -> str:
     if (
         not previous_letter
         or previous_letter.lower() in HALOSNYJA
@@ -53,8 +53,11 @@ def karvertavac_z_j(current_letter: str, previous_letter: str) -> str:
     return converted_letter
 
 
-def miakkuja_zycznyja(
-    current_letter: str, next_letter: str, next_next_letter: str, miakkasc: bool
+def _miakkuja_zycznyja(
+    current_letter: str,
+    next_letter: str,
+    next_next_letter: str,
+    miakkasc: bool,
 ):
     hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
     converted_letter = ""
@@ -97,7 +100,7 @@ def miakkuja_zycznyja(
     return converted_letter
 
 
-def convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
+def _convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
     converted_text = ""
     text_length = len(text)
     biahuczyja_pravily = (
@@ -109,29 +112,29 @@ def convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
         if index > 0:
             previous_letter = text[index - 1]
         else:
-            previous_letter = None
+            previous_letter = ""
 
         if index < text_length - 1:
             next_letter = text[index + 1]
         else:
-            next_letter = None
+            next_letter = ""
 
         if index < text_length - 2:
             next_next_letter = text[index + 2]
         else:
-            next_next_letter = None
+            next_next_letter = ""
 
         if current_letter.lower() in biahuczyja_pravily:
             converted_letter = biahuczyja_pravily[current_letter.lower()]
         elif current_letter.lower() in MOHUC_PAZNACZACCA_JAK_MIAKKIJA:
-            converted_letter = miakkuja_zycznyja(
+            converted_letter = _miakkuja_zycznyja(
                 current_letter, next_letter, next_next_letter, miakkasc
             )
         elif current_letter.lower() == "ь" or current_letter.lower() == "'":
             pass
         # Перадаюцца праз i/j
         elif current_letter.lower() in JOTAWANYJA_LITARY:
-            converted_letter = karvertavac_z_j(current_letter, previous_letter)
+            converted_letter = _kanvertavac_z_j(current_letter, previous_letter)
         else:
             converted_letter = current_letter
 
@@ -147,9 +150,9 @@ def convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
 
 class Cyr2Lat:
     @classmethod
-    def convert(cls, text: str, miakkasc: str = True) -> str:
-        return convert(text=text, classic=False, miakkasc=miakkasc)
+    def convert(cls, text: str, miakkasc: bool = True) -> str:
+        return _convert(text=text, classic=False, miakkasc=miakkasc)
 
     @classmethod
-    def convert_classic(cls, text: str, miakkasc: str = True) -> str:
-        return convert(text=text, classic=True, miakkasc=miakkasc)
+    def convert_classic(cls, text: str, miakkasc: bool = True) -> str:
+        return _convert(text=text, classic=True, miakkasc=miakkasc)
