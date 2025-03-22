@@ -52,24 +52,3 @@ jobs:
         pip install dist/*.whl
     - name: Test build package
       run: nox -s test
-
-  upload:
-    needs: package-tests
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.12
-    - name: Install dependencies
-      run: pip install -r build-requirements.txt
-    - uses: actions/download-artifact@v4
-      with:
-        name: packages
-        path: dist
-    - name: Check files
-      run: ls -Ra
-    - name: Upload the package
-      run: python3 -m twine upload --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*
