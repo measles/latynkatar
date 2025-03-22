@@ -1,10 +1,17 @@
+# Python cache
 __pycache__
 .pytest_cache
+
+# Dev, test and build environments
 test-venv
 build-env
-dist
 venv
+.nox
+
+# Build folder
+dist
+
+# IDE and editors
 .idea
 ~*
 .*.swp
-output.xml
