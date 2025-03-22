@@ -44,4 +44,4 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
-        python -m pytest tests -lvv -ra --doctest-modules --junitxml=junit/test-results.xml
+        nox -s test
