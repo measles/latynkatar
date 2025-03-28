@@ -9,6 +9,13 @@ def black(session):
     session.run("black", "--check", "tests/", "src/", "noxfile.py")
 
 
+@nox.session(tags=("tests", "lint"))
+def ruff(session):
+    session.install("ruff")
+    session.run("ruff", "format", "tests/", "src/", "noxfile.py")
+    session.run("ruff", "check", "tests/", "src/", "noxfile.py")
+
+
 @nox.session
 def black_diff(session):
     session.install("black")
@@ -24,7 +31,7 @@ def blacked(session):
 @nox.session(tags=("tests", "lint"))
 def flake8(session):
     session.install("flake8", "flake8-pyproject")
-    session.run("flake8", ".", "--count", "--exclude", ".nox,venv")
+    session.run("flake8", ".", "--count", "--exclude", ".nox,.venv")
 
 
 @nox.session(tags=("tests", "lint"))
