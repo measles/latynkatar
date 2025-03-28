@@ -1,6 +1,6 @@
 import nox
 
-nox.options.sessions = ["black", "flake8", "mypy", "test"]
+nox.options.sessions = ["black", "ruff", "flake8", "mypy", "test"]
 
 
 @nox.session(tags=("tests", "lint"))
