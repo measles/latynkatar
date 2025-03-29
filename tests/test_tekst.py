@@ -1,8 +1,8 @@
 # Try to import from module, else import from the source code
 try:
-    from latynkatar import Cyr2Lat
+    import latynkatar
 except ModuleNotFoundError:
-    from src.latynkatar import Cyr2Lat
+    import src.latynkatar as latynkatar
 
 from time import monotonic
 
@@ -108,24 +108,24 @@ with open("tests/data/novaja_ziamla.txt", "r") as novy_fail:
 
 
 def test_z_pamylki():
-    assert Cyr2Lat.convert(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA
+    assert latynkatar.convert(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA
 
 
 def test_z_pamylki_klasiczny():
-    assert Cyr2Lat.convert_classic(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA_KLASIČNY
+    assert latynkatar.convert_old(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA_KLASIČNY
 
 
 def test_bahdanovicz():
-    assert Cyr2Lat.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ
+    assert latynkatar.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ
 
 
 def test_bahdanovicz_klasiczny():
-    assert Cyr2Lat.convert_classic(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ_KLASICZNY
+    assert latynkatar.convert_old(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ_KLASICZNY
 
 
 def test_novaj_ziamloju():
     start = monotonic()
-    _ = Cyr2Lat.convert(NOVAJA_ZIAMLA)
+    _ = latynkatar.convert(NOVAJA_ZIAMLA)
     finish = monotonic()
 
     time_required = finish - start
@@ -137,7 +137,7 @@ def test_novaj_ziamloju():
 
 def test_novaj_ziamloju_klasicny():
     start = monotonic()
-    _ = Cyr2Lat.convert_classic(NOVAJA_ZIAMLA)
+    _ = latynkatar.convert_old(NOVAJA_ZIAMLA)
     finish = monotonic()
 
     time_required = finish - start
