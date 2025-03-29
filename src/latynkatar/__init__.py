@@ -18,7 +18,7 @@ You should have received a copy of the GNU Lesser General Public License v3
 :copyright: (c) 2023, 2024 by Andrej Zacharevicz.
 """
 
-from .latynkatar import Cyr2Lat
+from .latynkatar import convert, convert_old
 
 
-__all__ = ["Cyr2Lat"]
+__all__ = ["convert", "convert_old"]

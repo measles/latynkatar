@@ -100,11 +100,11 @@ def _miakkuja_zycznyja(
     return converted_letter
 
 
-def _convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
+def _convert(text: str, modern: bool = True, miakkasc: bool = True) -> str:
     converted_text = ""
     text_length = len(text)
     biahuczyja_pravily = (
-        KLASICZNYJA_PRAWILY_KANVERTACYJI if classic else PRAVILY_KANVERTACYJ
+        PRAVILY_KANVERTACYJ if modern else KLASICZNYJA_PRAWILY_KANVERTACYJI
     )
 
     for index, current_letter in enumerate(text):
@@ -148,11 +148,9 @@ def _convert(text: str, classic: bool = False, miakkasc: bool = True) -> str:
     return converted_text
 
 
-class Cyr2Lat:
-    @classmethod
-    def convert(cls, text: str, miakkasc: bool = True) -> str:
-        return _convert(text=text, classic=False, miakkasc=miakkasc)
+def convert(text: str, miakkasc: bool = True) -> str:
+    return _convert(text=text, modern=True, miakkasc=miakkasc)
 
-    @classmethod
-    def convert_classic(cls, text: str, miakkasc: bool = True) -> str:
-        return _convert(text=text, classic=True, miakkasc=miakkasc)
+
+def convert_old(text: str, miakkasc: bool = True) -> str:
+    return _convert(text=text, modern=False, miakkasc=miakkasc)
