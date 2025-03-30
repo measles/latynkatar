@@ -87,4 +87,4 @@ jobs:
     - name: Check files
       run: ls -Ra
     - name: Upload the package
-      run: uv publish --non-interactive --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*
+      run: uv publish --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*
