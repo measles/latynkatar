@@ -1,6 +1,8 @@
 """Тэсты і іншая аўтаматызацыя для праекта."""
 
+import sys
 import nox
+import toml
 
 nox.options.sessions = ["ruff", "black", "flake8", "pylint", "mypy", "pytest"]
 
@@ -37,7 +39,7 @@ def blacked(session):
 @nox.session(tags=("tests", "lint"))
 def pylint(session):
     """Правярае код з дапамогай pylint."""
-    session.install("pylint", "nox")
+    session.install("pylint", "nox", "toml")
     session.run("pylint", "tests/", "src/", "noxfile.py")
 
 
@@ -69,3 +71,15 @@ def pytest(session):
         "--html=report.html",
         "--self-contained-html",
     )
+
+
+@nox.session
+def set_version(_):
+    """Змяніць версію пакета."""
+    with open("pyproject.toml", "r", encoding="utf-8") as config_file:
+        config = toml.load(config_file)
+
+    config["project"]["version"] = sys.argv[-1].split("/")[0]
+
+    with open("pyproject.toml", "w", encoding="utf-8") as config_file:
+        toml.dump(config, config_file)
