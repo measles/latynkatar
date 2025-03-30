@@ -44,21 +44,25 @@ jobs:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"] 
 
     steps:
-    - name: Checkout the required state
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+
     - uses: actions/download-artifact@v4
       with:
         name: packages
         path: dist
-    - name: Display structure of downloaded files
-      run: ls -R
+
+
     - name: Install dependancies
       run: |
-        pip install -r requirements.txt
-        pip install dist/*.whl
+        uv venv
+        source .venv/bin/activate
+        uv sync
+        uv pip install dist/*.whl
     - name: Test build package
       run: nox -s test
