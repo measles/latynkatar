@@ -26,6 +26,9 @@ Issues = "https://github.com/measles/latynkatar/issues"
 [tool.flake8]
 max-line-length = 120
 
+[tool.pylint.'MESSAGES CONTROL']
+max-line-length = 120
+
 [dependency-groups]
 dev = [
     "nox>=2025.2.9",

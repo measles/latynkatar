@@ -28,6 +28,41 @@ from .variables import (
 )
 
 
+def _ci_patrabuje_adlustravannia_tranzityunaj_miakkasci(
+    next_letter: str, next_next_letter: str
+) -> bool:
+    """Правярае, ці патрабуе пазіцыя зычнай адлюстравання транзітыўнай мяккасці.
+
+    Args:
+        next_letter (str): наступная літара
+        next_next_letter (str): літара праз адну ад бягучай
+
+    Returns:
+        bool: True, калі патрабуе
+    """
+    return next_letter.lower() in ZYCZNYJA_Z_TRANZITAM and (
+        next_next_letter.lower() in JOTAWANYJA_LITARY or next_next_letter.lower() == "ь"
+    )
+
+
+def _ci_patrabuje_j(previous_letter: str) -> bool:
+    """Спраўджае, ці патрэбная пры канвертацыі ётаваных j.
+
+    Args:
+        previous_letter (str): папярэдняя літара ці сімвал
+
+    Returns:
+        bool: True, калі патрабуе
+    """
+    return (
+        not previous_letter
+        or previous_letter.lower() in HALOSNYJA
+        or not previous_letter.isalpha()
+        or previous_letter == "'"
+        or previous_letter.lower() == "ь"
+    )
+
+
 def _kanvertavac_z_j(current_letter: str, previous_letter: str) -> str:
     """Канвертуе ў лацінку літары з j/i: і, е, ё, ю, я.
 
@@ -40,13 +75,7 @@ def _kanvertavac_z_j(current_letter: str, previous_letter: str) -> str:
         str: Сканвертаваную да лацінкі літару. Вынікам часцяком можа быць
             некалькі літар.
     """
-    if (
-        not previous_letter
-        or previous_letter.lower() in HALOSNYJA
-        or not previous_letter.isalpha()
-        or previous_letter == "'"
-        or previous_letter.lower() == "ь"
-    ) and current_letter.lower() != "і":
+    if _ci_patrabuje_j(previous_letter) and current_letter.lower() != "і":
         base = "j"
     else:
         base = "i"
@@ -88,14 +117,14 @@ def _miakkuja_zycznyja(
     elif (
         next_letter
         and current_letter.lower() == "л"
-        and next_letter.lower() in JOTAWANYJA_LITARY.keys()
+        and next_letter.lower() in JOTAWANYJA_LITARY
     ):
         converted_letter = soft
     elif (
         next_next_letter
         and current_letter.lower() == next_letter.lower() == "л"
         and (
-            next_next_letter.lower() in JOTAWANYJA_LITARY.keys()
+            next_next_letter.lower() in JOTAWANYJA_LITARY
             or next_next_letter.lower() == "ь"
         )
     ):
@@ -104,10 +133,8 @@ def _miakkuja_zycznyja(
         miakkasc
         and next_letter
         and next_next_letter
-        and next_letter.lower() in ZYCZNYJA_Z_TRANZITAM
-        and (
-            next_next_letter.lower() in JOTAWANYJA_LITARY
-            or next_next_letter.lower() == "ь"
+        and _ci_patrabuje_adlustravannia_tranzityunaj_miakkasci(
+            next_letter, next_next_letter
         )
     ):
         if current_letter.lower() != "н" or (
