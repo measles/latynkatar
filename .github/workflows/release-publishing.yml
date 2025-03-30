@@ -61,4 +61,4 @@ jobs:
         pip install nox
         pip install dist/*.whl
     - name: Test build package
-      run: nox
+      run: nox -s pytest
