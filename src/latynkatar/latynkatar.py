@@ -29,6 +29,17 @@ from .variables import (
 
 
 def _kanvertavac_z_j(current_letter: str, previous_letter: str) -> str:
+    """Канвертуе ў лацінку літары з j/i: і, е, ё, ю, я.
+
+    Args:
+        current_letter (str): Літара, каторую трэба сканвертаваць
+        previous_letter (str): Пяпярэдняя літара ў тэксце, ці пусты радок,
+            калі папярэдняе няма.
+
+    Returns:
+        str: Сканвертаваную да лацінкі літару. Вынікам часцяком можа быць
+            некалькі літар.
+    """
     if (
         not previous_letter
         or previous_letter.lower() in HALOSNYJA
@@ -58,7 +69,18 @@ def _miakkuja_zycznyja(
     next_letter: str,
     next_next_letter: str,
     miakkasc: bool,
-):
+) -> str:
+    """Канвертуе да лацінкі зычныя, якія могуць быць мяккімі.
+
+    Args:
+        current_letter (str): Літара, якую трэба канвертаваць
+        next_letter (str): Папярэдняя літара ў тэксце
+        next_next_letter (str): Наступная літара ў тэксце
+        miakkasc (bool): Ці пазначаць транзітыўную мяккасць
+
+    Returns:
+        str: вынік канвертацыі
+    """
     hard, soft = MOHUC_PAZNACZACCA_JAK_MIAKKIJA[current_letter.lower()]
     converted_letter = ""
     if next_letter and next_letter.lower() == "ь":
@@ -101,6 +123,18 @@ def _miakkuja_zycznyja(
 
 
 def _convert(text: str, modern: bool = True, miakkasc: bool = True) -> str:
+    """Канвертуе тэкст з кірыліцы да лацінкі. Усе літары і знакі, які не могуць
+        лічыцца беларускай кірыліцай захоўваюцца без зменаў.
+
+    Args:
+        text (str): Тэкст для канвертацыі
+        modern (bool, optional): Ці канвертаваць да сучаснай ("чэшчскай") лацінкі.
+            Па змоўчванню True.
+        miakkasc (bool, optional): Ці адлюстроўвацць транзітыўную мяккасць. Па змоўчванню True.
+
+    Returns:
+        str: Сканвертаваны тэкст
+    """
     converted_text = ""
     text_length = len(text)
     biahuczyja_pravily = (
@@ -149,8 +183,32 @@ def _convert(text: str, modern: bool = True, miakkasc: bool = True) -> str:
 
 
 def convert(text: str, miakkasc: bool = True) -> str:
+    """Канвертуе з кірыліцы да сучаснай ("чэшскай") лацінкі. Усе літары і знакі, які не могуць
+        лічыцца беларускай кірыліцай захоўваюцца без зменаў.
+
+
+    Args:
+        text (str): Тэкст які мусіць быць сканвертаваны
+        miakkasc (bool, optional): Ці пазначаць транзітыўную мяккасць.
+            Па змоўчванню True.
+
+    Returns:
+        str: Вынік канвертацыі
+    """
     return _convert(text=text, modern=True, miakkasc=miakkasc)
 
 
 def convert_old(text: str, miakkasc: bool = True) -> str:
+    """Канвертуе з кірыліцы да старой ("польскай") лацінкі. Усе літары і знакі, які не могуць
+        лічыцца беларускай кірыліцай захоўваюцца без зменаў.
+
+
+    Args:
+        text (str): Тэкст, які мусіць быць сканвертаваны.
+        miakkasc (bool, optional): Ці пазначаць транзітыўную мяккасць.
+            Па змоўчваннб True.
+
+    Returns:
+        str: Вынік канвертацыі
+    """
     return _convert(text=text, modern=False, miakkasc=miakkasc)
