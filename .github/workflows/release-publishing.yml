@@ -60,8 +60,6 @@ jobs:
 
     - name: Install dependancies
       run: |
-        uv venv
-        source .venv/bin/activate
         uv sync
         uv pip install dist/*.whl
     - name: Test build package
