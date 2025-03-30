@@ -1,6 +1,6 @@
 # This workflow should build and publish the packege in case when release was created in Github UI
 
-name: Python package
+name: Python packaging and release publication
 
 # on:
 #   release:
@@ -35,7 +35,7 @@ jobs:
         name: packages
         path: dist/*
 
-  package-tests:
+  test-the-package:
     needs: build
     runs-on: ubuntu-latest
     strategy:
@@ -61,4 +61,4 @@ jobs:
         pip install nox
         pip install dist/*.whl
     - name: Test build package
-      run: nox -s test
+      run: nox
