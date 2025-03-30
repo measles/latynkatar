@@ -79,7 +79,7 @@ def set_version(_):
     with open("pyproject.toml", "r", encoding="utf-8") as config_file:
         config = toml.load(config_file)
 
-    config["project"]["version"] = sys.argv[-1].split("/")[0]
+    config["project"]["version"] = sys.argv[-1].split("/")[-1]
 
     with open("pyproject.toml", "w", encoding="utf-8") as config_file:
         toml.dump(config, config_file)
