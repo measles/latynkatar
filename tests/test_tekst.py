@@ -1,8 +1,12 @@
+"""Тэсты з сапраўднымі тэкстамі."""
+
+# pylint: disable=non-ascii-name
+
 # Try to import from module, else import from the source code
 try:
     import latynkatar
 except ModuleNotFoundError:
-    import src.latynkatar as latynkatar
+    from src import latynkatar
 
 from time import monotonic
 
@@ -30,7 +34,7 @@ biełaruskich navukoŭcaŭ i daślednikaŭ dakładnych i pryrodaznaŭčych navuk
 navukova-papularnaha časopisu Pamyłka Zin.
 Bolš detalaŭ apaviadaje pieršy artykuł numaru.
 """
-UZOR_PAMYŁKA_KLASIČNY = """Witajem ciabie, czytaczu!
+UZOR_PAMYŁKA_STARY = """Witajem ciabie, czytaczu!
 Heta treci numar PAMYŁKA ZIN!
 My wielmi cieszymsia, szto da kamandy stwaralnikaŭ praciahwajuć dałuczacca
 nowyja nawukoŭcy i mastaki! I my budziem radyja kożnamu nowamu ŭdzielniku!
@@ -82,7 +86,7 @@ Poŭny śvietłymi dniami!
 Pralatajcie, hady,
 Załatymi ahniami!
 """
-UZOR_BAHDANOVIČ_KLASICZNY = """Maładyja hady,
+UZOR_BAHDANOVIČ_STARY = """Maładyja hady,
 Maładyja żadańni!
 Ni żudy, ni nudy,
 Tolki szczaście kachańnia!
@@ -103,27 +107,32 @@ Pralatajcie, hady,
 Załatymi ahniami!
 """
 
-with open("tests/data/novaja_ziamla.txt", "r") as novy_fail:
+with open("tests/data/novaja_ziamla.txt", "r", encoding="utf-8") as novy_fail:
     NOVAJA_ZIAMLA = novy_fail.read()
 
 
 def test_z_pamylki():
+    """Праверка канвертацыі тэкста з «Памылкі»."""
     assert latynkatar.convert(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA
 
 
-def test_z_pamylki_klasiczny():
-    assert latynkatar.convert_old(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA_KLASIČNY
+def test_z_pamylki_stary():
+    """Праверка канвертацыі тэкста з «Памылкі» да старога набора сімвалаў."""
+    assert latynkatar.convert_old(PRYKŁAD_PAMYŁKA) == UZOR_PAMYŁKA_STARY
 
 
 def test_bahdanovicz():
+    """Тэст на канвертацыю верша Багдановіча."""
     assert latynkatar.convert(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ
 
 
-def test_bahdanovicz_klasiczny():
-    assert latynkatar.convert_old(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ_KLASICZNY
+def test_bahdanovicz_stary():
+    """Тэст на канвертацыю верша Багдановіча да старога набора сімвалаў."""
+    assert latynkatar.convert_old(PRYKŁAD_BAHDANOVIČ) == UZOR_BAHDANOVIČ_STARY
 
 
 def test_novaj_ziamloju():
+    """Тэст хуткасці канвертацыі з дапамогай «Новай зямлі»."""
     start = monotonic()
     _ = latynkatar.convert(NOVAJA_ZIAMLA)
     finish = monotonic()
@@ -132,10 +141,11 @@ def test_novaj_ziamloju():
 
     print(start, finish, time_required)
 
-    assert time_required < 0.5
+    assert time_required < 0.35
 
 
-def test_novaj_ziamloju_klasicny():
+def test_novaj_ziamloju_stary():
+    """Тэст хуткасці канвертацыі з дапамогай «Новай зямлі» (стары набор сімвалаў)."""
     start = monotonic()
     _ = latynkatar.convert_old(NOVAJA_ZIAMLA)
     finish = monotonic()
@@ -144,4 +154,4 @@ def test_novaj_ziamloju_klasicny():
 
     print(start, finish, time_required)
 
-    assert time_required < 0.5
+    assert time_required < 0.35
