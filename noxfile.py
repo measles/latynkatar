@@ -3,10 +3,7 @@ import nox
 nox.options.sessions = ["ruff", "black", "flake8", "mypy", "test"]
 
 
-@nox.session(tags=("tests", "lint"))
-def black(session):
-    session.install("black")
-    session.run("black", "--check", "tests/", "src/", "noxfile.py")
+
 
 
 @nox.session(tags=("tests", "lint"))
@@ -14,6 +11,12 @@ def ruff(session):
     session.install("ruff")
     session.run("ruff", "format", "tests/", "src/", "noxfile.py")
     session.run("ruff", "check", "tests/", "src/", "noxfile.py")
+    
+    
+@nox.session(tags=("tests", "lint"))
+def black(session):
+    session.install("black")
+    session.run("black", "--check", "tests/", "src/", "noxfile.py")
 
 
 @nox.session
@@ -26,6 +29,12 @@ def black_diff(session):
 def blacked(session):
     session.install("black")
     session.run("black", "tests", "src", "noxfile.py")
+    
+    
+@nox.session(tags=("tests", "lint"))
+def pylint(session):
+    session.install("pylint")
+    session.run("pylint", "tests/", "src/", "noxfile.py")
 
 
 @nox.session(tags=("tests", "lint"))
