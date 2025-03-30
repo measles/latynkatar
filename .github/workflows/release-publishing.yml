@@ -49,8 +49,6 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install uv
-      uses: astral-sh/setup-uv@v5
 
     - uses: actions/download-artifact@v4
       with:
@@ -60,7 +58,7 @@ jobs:
 
     - name: Install dependancies
       run: |
-        uv sync
-        uv pip install dist/*.whl
+        pip install nox
+        pip install dist/*.whl
     - name: Test build package
       run: nox -s test
