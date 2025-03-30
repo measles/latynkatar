@@ -1,8 +1,8 @@
 """Тэсты і іншая аўтаматызацыя для праекта."""
 
+import sys
 import nox
 import toml
-import sys
 
 nox.options.sessions = ["ruff", "black", "flake8", "pylint", "mypy", "pytest"]
 
@@ -79,7 +79,7 @@ def set_version(_):
     with open("pyproject.toml", "r", encoding="utf-8") as config_file:
         config = toml.load(config_file)
 
-    config["project"]["version"] = sys.argv[-1]
+    config["project"]["version"] = sys.argv[-1].split("/")[0]
 
     with open("pyproject.toml", "w", encoding="utf-8") as config_file:
         toml.dump(config, config_file)

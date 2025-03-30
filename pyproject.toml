@@ -32,4 +32,5 @@ max-line-length = 120
 [dependency-groups]
 dev = [
     "nox>=2025.2.9",
+    "toml>=0.10.2",
 ]
