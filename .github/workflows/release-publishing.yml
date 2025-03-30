@@ -1,0 +1,64 @@
+# This workflow should build and publish the packege in case when release was created in Github UI
+
+name: Python package
+
+# on:
+#   release:
+#     types: [ "released" ]
+
+on:
+  push:
+    branches: 
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.13
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+
+    - name: Build the package
+      run: uv build
+
+    - name: Collect builded package
+      uses: actions/upload-artifact@v4
+      with:
+        name: packages
+        path: dist/*
+
+  package-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"] 
+
+    steps:
+    - name: Checkout the required state
+      uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/download-artifact@v4
+      with:
+        name: packages
+        path: dist
+    - name: Display structure of downloaded files
+      run: ls -R
+    - name: Install dependancies
+      run: |
+        pip install -r requirements.txt
+        pip install dist/*.whl
+    - name: Test build package
+      run: nox -s test
