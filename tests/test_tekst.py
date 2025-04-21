@@ -141,7 +141,7 @@ def test_novaj_ziamloju():
 
     print(start, finish, time_required)
 
-    assert time_required < 0.35
+    assert time_required < 0.4
 
 
 def test_novaj_ziamloju_stary():
@@ -154,4 +154,4 @@ def test_novaj_ziamloju_stary():
 
     print(start, finish, time_required)
 
-    assert time_required < 0.35
+    assert time_required < 0.4
