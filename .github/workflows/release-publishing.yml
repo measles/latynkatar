@@ -99,6 +99,8 @@ jobs:
         with:
           name: packages
           path: dist
+      - name: Check files
+        run: ls -lah dist
       - name: Upload artifacts into release
         uses: svenstaro/upload-release-action@v2
         with:
