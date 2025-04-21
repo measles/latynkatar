@@ -103,5 +103,6 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           tag: ${{ github.ref }}
+          file_glob: true
           file: dist/*
       
