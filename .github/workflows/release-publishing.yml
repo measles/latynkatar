@@ -88,3 +88,20 @@ jobs:
       run: ls -Ra
     - name: Upload the package
       run: uv publish --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/*
+
+  add-binaries-to-release:
+    needs: upload-to-pypi
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtain artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: packages
+          path: dist
+      - name: Upload artifacts into release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          tag: ${{ github.ref }}
+          file: dist/*
+      
