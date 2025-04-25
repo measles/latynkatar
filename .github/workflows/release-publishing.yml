@@ -24,7 +24,7 @@ jobs:
     - name: Install uv
       uses: astral-sh/setup-uv@v5
 
-    - run: uv sync
+    - run: uv sync --no-editable
 
     - name: Set version for the release tag
       run: uv run nox -s set_version -- ${{github.ref}}
@@ -39,6 +39,8 @@ jobs:
         path: dist/*
 
   test-the-package:
+    env:
+      IS_THIS_A_PACKAGE_TEST: true
     needs: build
     runs-on: ubuntu-latest
     strategy:
@@ -47,7 +49,11 @@ jobs:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"] 
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Get tests and tests only
+      uses: actions/checkout@v4
+      with:
+        sparse-checkout: |
+          tests
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
@@ -60,11 +66,8 @@ jobs:
         name: packages
         path: dist
 
-
     - name: Update uv environment
-      run: uv sync
-    - name: Install package to test 
-      run: uv pip install dist/*.whl
+      run: uv sync --no-editable
     - name: Test build package
       run: uv run nox -s pytest
 

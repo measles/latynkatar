@@ -1,10 +1,20 @@
 """Тэсты і іншая аўтаматызацыя для праекта."""
 
+import glob
+import os
 import sys
+
 import nox
 import toml
 
-nox.options.sessions = ["ruff", "black", "flake8", "pylint", "mypy", "pytest"]
+nox.options.sessions = ["isort", "ruff", "black", "flake8", "pylint", "mypy", "pytest"]
+
+
+@nox.session(tags=("tests", "lint"))
+def isort(session):
+    """Выправўляе парадак імпартаў ў пітонаўскіх модулях"""
+    session.install("isort")
+    session.run("isort", "tests", "src", "noxfile.py")
 
 
 @nox.session(tags=("tests", "lint"))
@@ -61,6 +71,11 @@ def mypy(session):
 def pytest(session):
     """Юніттэсты з pytest."""
     session.install("pytest", "pytest-html")
+    if os.getenv("IS_THIS_A_PACKAGE_TEST") == "true":
+        files = list(glob.glob("dist/*.whl"))
+        if len(files) != 1:
+            raise EnvironmentError(f"Found more then one WHL file in dist: {files}")
+        session.install(files[0])
     session.run(
         "python3",
         "-m",
