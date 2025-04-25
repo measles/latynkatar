@@ -1,5 +1,6 @@
 """Тэсты і іншая аўтаматызацыя для праекта."""
 
+import glob
 import os
 import sys
 
@@ -71,7 +72,10 @@ def pytest(session):
     """Юніттэсты з pytest."""
     session.install("pytest", "pytest-html")
     if os.getenv("IS_THIS_A_PACKAGE_TEST") == "true":
-        session.install("./dist/")
+        files = list(glob.glob("dist/*.whl"))
+        if len(files) != 1:
+            raise EnvironmentError(f"Found more then one WHL file in dist: {files}")
+        session.install(files[0])
     session.run(
         "python3",
         "-m",
