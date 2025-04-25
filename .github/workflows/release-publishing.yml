@@ -47,7 +47,11 @@ jobs:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"] 
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Get tests and tests only
+      uses: actions/checkout@v4
+      with:
+        sparse-checkout: |
+          tests
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
@@ -59,7 +63,6 @@ jobs:
       with:
         name: packages
         path: dist
-
 
     - name: Update uv environment
       run: uv sync
