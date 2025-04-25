@@ -39,6 +39,8 @@ jobs:
         path: dist/*
 
   test-the-package:
+    env:
+      IS_THIS_A_PACKAGE_TEST: true
     needs: build
     runs-on: ubuntu-latest
     strategy:
@@ -66,8 +68,6 @@ jobs:
 
     - name: Update uv environment
       run: uv sync --no-editable
-    - name: Install package to test 
-      run: uv pip install dist/*.whl
     - name: Test build package
       run: uv run nox -s pytest
 

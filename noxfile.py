@@ -3,6 +3,8 @@
 import sys
 import nox
 import toml
+import os
+
 
 nox.options.sessions = ["ruff", "black", "flake8", "pylint", "mypy", "pytest"]
 
@@ -61,6 +63,8 @@ def mypy(session):
 def pytest(session):
     """Юніттэсты з pytest."""
     session.install("pytest", "pytest-html")
+    if os.getenv("IS_THIS_A_PACKAGE_TEST") == "true":
+        session.install("./dist/*.whl")
     session.run(
         "python3",
         "-m",
