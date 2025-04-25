@@ -71,7 +71,7 @@ def pytest(session):
     """Юніттэсты з pytest."""
     session.install("pytest", "pytest-html")
     if os.getenv("IS_THIS_A_PACKAGE_TEST") == "true":
-        session.install("./dist/*.whl")
+        session.install("./dist/")
     session.run(
         "python3",
         "-m",
