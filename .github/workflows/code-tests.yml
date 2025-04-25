@@ -27,5 +27,5 @@ jobs:
       uses: astral-sh/setup-uv@v5
     - name: Install dependencies
       run: uv sync --dev
-    - name: Test with pytest
+    - name: Test with the whole power of nox
       run: uv run nox -t tests

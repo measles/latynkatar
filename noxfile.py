@@ -1,12 +1,19 @@
 """Тэсты і іншая аўтаматызацыя для праекта."""
 
+import os
 import sys
+
 import nox
 import toml
-import os
+
+nox.options.sessions = ["isort", "ruff", "black", "flake8", "pylint", "mypy", "pytest"]
 
 
-nox.options.sessions = ["ruff", "black", "flake8", "pylint", "mypy", "pytest"]
+@nox.session(tags=("tests", "lint"))
+def isort(session):
+    """Выправўляе парадак імпартаў ў пітонаўскіх модулях"""
+    session.install("isort")
+    session.run("isort", "tests", "src", "noxfile.py")
 
 
 @nox.session(tags=("tests", "lint"))
