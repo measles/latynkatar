@@ -15,3 +15,6 @@ dist
 .idea
 ~*
 .*.swp
+
+# test report
+report*.html
