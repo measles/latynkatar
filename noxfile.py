@@ -9,7 +9,6 @@ import toml
 
 SHOULD_BE_REPLACED = {
     "isort": "isort_check",
-    "ruff": "ruff_check",
     "black": "black_check",
 }
 
@@ -20,9 +19,9 @@ def replace_by_checks(session_name):
 
 
 nox.options.sessions = [
+    "black",
     "isort",
     "ruff",
-    "black",
     "flake8",
     "pylint",
     "mypy",
@@ -31,6 +30,20 @@ nox.options.sessions = [
 
 if os.getenv("CI"):
     nox.options.sessions = list(map(replace_by_checks, nox.options.sessions))
+
+
+@nox.session(tags=["lint"])
+def black(session):
+    """Фарматуе код па правілах black."""
+    session.install("black")
+    session.run("black", "tests", "src", "noxfile.py")
+
+
+@nox.session
+def black_check(session):
+    """паказвае што ў кодзе змяніў бы black."""
+    session.install("black")
+    session.run("black", "--diff", "tests/", "src/", "noxfile.py")
 
 
 @nox.session(tags=["lint"])
@@ -51,30 +64,7 @@ def isort_check(session):
 def ruff(session):
     """Фарматаванне і статычныя тэсты ruff."""
     session.install("ruff")
-    session.run("ruff", "format", "tests/", "src/", "noxfile.py")
     session.run("ruff", "check", "tests/", "src/", "noxfile.py")
-
-
-@nox.session
-def ruff_check(session):
-    """Статычныя тэсты і праверка фарматавання ruff."""
-    session.install("ruff")
-    session.run("ruff", "format", "--diff", "tests/", "src/", "noxfile.py")
-    session.run("ruff", "check", "tests/", "src/", "noxfile.py")
-
-
-@nox.session
-def black_check(session):
-    """паказвае што ў кодзе змяніў бы black."""
-    session.install("black")
-    session.run("black", "--diff", "tests/", "src/", "noxfile.py")
-
-
-@nox.session(tags=["lint"])
-def black(session):
-    """Фарматуе код па правілах black."""
-    session.install("black")
-    session.run("black", "tests", "src", "noxfile.py")
 
 
 @nox.session(tags=["lint"])
