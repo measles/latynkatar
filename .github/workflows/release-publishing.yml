@@ -29,6 +29,12 @@ jobs:
     - name: Set version for the release tag
       run: uv run nox -s set_version -- ${{github.ref}}
 
+    - name: Create stubs
+      run: uv run nox -s generate_stubs
+
+    - name: Remove files I don't want in build
+      run: rm -rf tests/ .github/ noxfile.pl .envrc .gitignore uv.lock
+
     - name: Build the package
       run: uv build
 
