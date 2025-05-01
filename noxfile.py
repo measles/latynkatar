@@ -119,3 +119,10 @@ def set_version(_):
 
     with open("pyproject.toml", "w", encoding="utf-8") as config_file:
         toml.dump(config, config_file)
+
+
+@nox.session
+def generate_stubs(session):
+    """Стварыць стабы для пакета Латынкатар"""
+    session.install("mypy")
+    session.run("stubgen", "--package", "src.latynkatar", "--output", ".")
