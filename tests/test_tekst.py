@@ -3,12 +3,13 @@
 # pylint: disable=non-ascii-name
 
 # Try to import from module, else import from the source code
+from time import monotonic
+
 try:
     import latynkatar
 except ModuleNotFoundError:
     from src import latynkatar
 
-from time import monotonic
 
 # Узор узяты з часопіса PAMYŁKA:
 # https://github.com/PAMYLKA-ZIN/pamylka-number-3/tree/main/PAMYLKA_ZIN_3_FOR_SHARING
