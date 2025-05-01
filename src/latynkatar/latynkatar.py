@@ -18,14 +18,10 @@ You should have received a copy of the GNU Lesser General Public License v3
 :copyright: (c) 2023, 2024 by Andrej Zacharevicz.
 """
 
-from .variables import (
-    HALOSNYJA,
-    JOTAWANYJA_LITARY,
-    KLASICZNYJA_PRAWILY_KANVERTACYJI,
-    MOHUC_PAZNACZACCA_JAK_MIAKKIJA,
-    PRAVILY_KANVERTACYJ,
-    ZYCZNYJA_Z_TRANZITAM,
-)
+from .variables import (HALOSNYJA, JOTAWANYJA_LITARY,
+                        KLASICZNYJA_PRAWILY_KANVERTACYJI,
+                        MOHUC_PAZNACZACCA_JAK_MIAKKIJA, PRAVILY_KANVERTACYJ,
+                        ZYCZNYJA_Z_TRANZITAM)
 
 
 def _ci_patrabuje_adlustravannia_tranzityunaj_miakkasci(
