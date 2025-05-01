@@ -62,7 +62,7 @@ def isort_check(session):
 
 @nox.session(tags=["lint"])
 def ruff(session):
-    """Фарматаванне і статычныя тэсты ruff."""
+    """Cтатычныя тэсты ruff."""
     session.install("ruff")
     session.run("ruff", "check", "tests/", "src/", "noxfile.py")
 
