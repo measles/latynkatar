@@ -7,17 +7,47 @@ import sys
 import nox
 import toml
 
-nox.options.sessions = ["isort", "ruff", "black", "flake8", "pylint", "mypy", "pytest"]
+SHOULD_BE_REPLACED = {
+    "isort": "isort_check",
+    "ruff": "ruff_check",
+    "black": "black_check",
+}
 
 
-@nox.session(tags=("tests", "lint"))
+def replace_by_checks(session_name):
+    """Замяняе сесіі, якія выпраўляюць код на месцы на бяспечныя аналагі"""
+    return SHOULD_BE_REPLACED.get(session_name, session_name)
+
+
+nox.options.sessions = [
+    "isort",
+    "ruff",
+    "black",
+    "flake8",
+    "pylint",
+    "mypy",
+    "pytest",
+]
+
+if os.getenv("CI"):
+    nox.options.sessions = list(map(replace_by_checks, nox.options.sessions))
+
+
+@nox.session(tags=["lint"])
 def isort(session):
     """Выправўляе парадак імпартаў ў пітонаўскіх модулях"""
     session.install("isort")
     session.run("isort", "tests", "src", "noxfile.py")
 
 
-@nox.session(tags=("tests", "lint"))
+@nox.session
+def isort_check(session):
+    """Правярае парадак імпартаў ў пітонаўскіх модулях"""
+    session.install("isort")
+    session.run("isort", "--check-only", "tests", "src", "noxfile.py")
+
+
+@nox.session(tags=["lint"])
 def ruff(session):
     """Фарматаванне і статычныя тэсты ruff."""
     session.install("ruff")
@@ -25,49 +55,50 @@ def ruff(session):
     session.run("ruff", "check", "tests/", "src/", "noxfile.py")
 
 
-@nox.session(tags=("tests", "lint"))
-def black(session):
-    """Праверка фарматавання коду праз black."""
-    session.install("black")
-    session.run("black", "--check", "tests/", "src/", "noxfile.py")
+@nox.session
+def ruff_check(session):
+    """Статычныя тэсты і праверка фарматавання ruff."""
+    session.install("ruff")
+    session.run("ruff", "format", "--diff", "tests/", "src/", "noxfile.py")
+    session.run("ruff", "check", "tests/", "src/", "noxfile.py")
 
 
 @nox.session
-def black_diff(session):
+def black_check(session):
     """паказвае што ў кодзе змяніў бы black."""
     session.install("black")
     session.run("black", "--diff", "tests/", "src/", "noxfile.py")
 
 
-@nox.session
-def blacked(session):
+@nox.session(tags=["lint"])
+def black(session):
     """Фарматуе код па правілах black."""
     session.install("black")
     session.run("black", "tests", "src", "noxfile.py")
 
 
-@nox.session(tags=("tests", "lint"))
+@nox.session(tags=["lint"])
 def pylint(session):
     """Правярае код з дапамогай pylint."""
     session.install("pylint", "nox", "toml")
     session.run("pylint", "tests/", "src/", "noxfile.py")
 
 
-@nox.session(tags=("tests", "lint"))
+@nox.session(tags=["lint"])
 def flake8(session):
     """Правярае код з дапамогай flake8."""
     session.install("flake8", "flake8-pyproject")
     session.run("flake8", ".", "--count", "--exclude", ".nox,.venv")
 
 
-@nox.session(tags=("tests", "lint"))
+@nox.session(tags=["lint"])
 def mypy(session):
     """Правярае пазначэнне і супадзенне тыпаў праз mypy."""
     session.install("mypy")
     session.run("mypy", "-p", "src.latynkatar")
 
 
-@nox.session(tags=("tests",))
+@nox.session
 def pytest(session):
     """Юніттэсты з pytest."""
     session.install("pytest", "pytest-html")
