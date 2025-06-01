@@ -53,7 +53,7 @@
     You should have received a copy of the GNU Lesser General Public License v3
     (LGPLv3) along with Łatynkatar. If not, see <https://www.gnu.org/licenses/>.
 
-:copyright: (c) 2023, 2024 by Andrej Zacharevicz.
+:copyright: (c) 2025 Łatynkatar group: https://github.com/latynkatar
 """
 
 from .latynkatar import convert, convert_old

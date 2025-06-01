@@ -42,6 +42,6 @@ $ python -m pip install latynkatar
 У якасці ўзору ўжывання бібліятэкі ці анлайн канвертара створанага на яе аснове магу прапанаваць паглядзець на сайт [latynkatar.org](https://latynkatar.org). Зыходнікі даступныя [тут](https://github.com/measles/latynkatar_site).
 
 ## Ліцэнзія
-Copyright Andrej Zacharevicz, 2023
+Copyright група Łatynkatar, 2025
 
 [![LGPL v3.0](https://www.gnu.org/graphics/lgplv3-with-text-154x68.png)](https://github.com/measles/latynkatar/blob/main/LICENSE) ад [GNU](https://www.gnu.org/licenses/lgpl-3.0.html)
