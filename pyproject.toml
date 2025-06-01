@@ -3,6 +3,7 @@ name = "latynkatar"
 version = "1.2.4"
 authors = [
   { name="Andrej Zacharevicz", email="zahar.by@gmail.com" },
+  { name="Łatynkatar group", email="admin@latynkatar.org"}
 ]
 description = """EN: Simple and small package to convert belarussian cyrillic text to a modern (the one with ž, č, š and v) and classic (the one with ż, cz, sz and w) latin .
 
@@ -16,8 +17,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/measles/latynkatar"
-Issues = "https://github.com/measles/latynkatar/issues"
+Homepage = "https://github.com/latynkatar/latynkatar"
+Issues = "https://github.com/latynkatar/latynkatar/issues"
 
 [tool.flake8]
 max-line-length = 120
